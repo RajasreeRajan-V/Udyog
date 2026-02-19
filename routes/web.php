@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,10 +12,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+Route::get('/', [UserController::class, 'index'])->name('home');
+
+Route::get('/careers', [UserController::class, 'careers'])->name('careers');
+Route::get('/about', [UserController::class, 'about'])->name('about');
+Route::get('/products', [UserController::class, 'products'])->name('products');
+Route::get('/gallery', [UserController::class, 'gallery'])->name('gallery');
+
+Route::get('/offers', [UserController::class, 'offers'])->name('offers');
+
+
 
 require __DIR__.'/auth.php';
