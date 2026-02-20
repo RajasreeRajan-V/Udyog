@@ -33,6 +33,12 @@
                 </a>
             </li>
 
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.teams.index') }}" class="nav-link">
+                    Manage Team Members
+                </a>
+            </li>
+
          
             <li class="nav-item mt-4">
                 <form method="POST" action="{{ route('logout') }}">

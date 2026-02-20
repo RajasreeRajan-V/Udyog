@@ -14,5 +14,6 @@ Route::name('admin.')->group(function () {
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     
         Route::resource('aboutus', AboutUsController::class);
+        Route::resource('teams', TeamController::class);
         });
 });
