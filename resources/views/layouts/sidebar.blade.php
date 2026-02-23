@@ -48,6 +48,11 @@
                     Manage Services
                 </a>
             </li>
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.galleries.index') }}" class="nav-link">
+                    Manage Gallery
+                </a>
+            </li>
             <li class="nav-item mt-4">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
