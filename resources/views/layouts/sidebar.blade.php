@@ -58,6 +58,11 @@
                     Manage Careers
                 </a>
             </li>
+                <li class="nav-item mb-2">
+                    <a href="{{ route('admin.offers.index') }}" class="nav-link">
+                        Manage Offers
+                    </a>
+                </li>
             <li class="nav-item mt-4">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

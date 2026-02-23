@@ -19,5 +19,6 @@ Route::name('admin.')->group(function () {
         Route::resource('services', ServiceController::class);
         Route::resource('galleries', GalleryController::class);
         Route::resource('careers', CareerController::class);
+        Route::resource('offers', OfferController::class);
         });
 });
