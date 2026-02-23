@@ -18,5 +18,6 @@ Route::name('admin.')->group(function () {
         Route::resource('products', ProductController::class);
         Route::resource('services', ServiceController::class);
         Route::resource('galleries', GalleryController::class);
+        Route::resource('careers', CareerController::class);
         });
 });
