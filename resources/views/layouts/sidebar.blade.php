@@ -63,11 +63,16 @@
                         Manage Offers
                     </a>
                 </li>
-             <li class="nav-item mb-2">
-                    <a href="{{ route('admin.reviews.index') }}" class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active' : '' }}">
-                        Manage Reviews
-                    </a>
-                </li>
+                <li class="nav-item mb-2">
+                        <a href="{{ route('admin.reviews.index') }}" class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active' : '' }}">
+                            Manage Reviews
+                        </a>
+                    </li>
+              <li class="nav-item mb-2">
+                        <a href="{{ route('admin.applications.index') }}" class="nav-link {{ request()->routeIs('admin.applications.index') ? 'active' : '' }}">
+                            Manage Applications
+                        </a>
+                    </li>
             <li class="nav-item mt-4">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

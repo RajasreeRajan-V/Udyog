@@ -274,6 +274,7 @@ function initTestimonials() {
         autoRotateInterval = setInterval(nextTestimonial, 3500); // Change every 3.5 seconds
     }
 
+    
     // Pause auto-rotation on hover over center image
     function setupHoverPause() {
         testimonialItems.forEach((item) => {

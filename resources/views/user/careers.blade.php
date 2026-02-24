@@ -63,10 +63,11 @@
 
     <div style="height: 100px;"></div>
     @if(session('success'))
-        <div class="alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div class="alert alert-success alert-dismissible fade show">
+        {{ session('success') }}
+        <button type="button" class="btn-close" onclick="this.parentElement.style.display='none'"></button>
+    </div>
+@endif
     <section class="container careers-content">
         <div class="text-center" style="margin-bottom: 50px;">
             <h1 class="section-title">Career Opportunities</h1>
@@ -294,6 +295,16 @@
             });
         @endif
     </script>
+    <script>
+    setTimeout(function() {
+        const alert = document.querySelector('.alert');
+        if(alert){
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = "0";
+            setTimeout(() => alert.remove(), 500);
+        }
+    }, 4000);
+</script>
 </body>
 
 </html>
