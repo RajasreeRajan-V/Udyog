@@ -28,39 +28,44 @@
             </li>
 
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.aboutus.index') }}" class="nav-link">
+                <a href="{{ route('admin.aboutus.index') }}" class="nav-link {{ request()->routeIs('admin.aboutus.index') ? 'active' : '' }}">
                     Manage About Us
                 </a>
             </li>
 
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.teams.index') }}" class="nav-link">
+                <a href="{{ route('admin.teams.index') }}" class="nav-link {{ request()->routeIs('admin.teams.index') ? 'active' : '' }}">
                     Manage Team Members
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.products.index') }}" class="nav-link">
+                <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
                     Manage Products
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.services.index') }}" class="nav-link">
+                <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.index') ? 'active' : '' }}">
                     Manage Services
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.galleries.index') }}" class="nav-link">
+                <a href="{{ route('admin.galleries.index') }}" class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">
                     Manage Gallery
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.careers.index') }}" class="nav-link">
+                <a href="{{ route('admin.careers.index') }}" class="nav-link {{ request()->routeIs('admin.careers.index') ? 'active' : '' }}">
                     Manage Careers
                 </a>
             </li>
                 <li class="nav-item mb-2">
-                    <a href="{{ route('admin.offers.index') }}" class="nav-link">
+                    <a href="{{ route('admin.offers.index') }}" class="nav-link {{ request()->routeIs('admin.offers.index') ? 'active' : '' }}">
                         Manage Offers
+                    </a>
+                </li>
+             <li class="nav-item mb-2">
+                    <a href="{{ route('admin.reviews.index') }}" class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active' : '' }}">
+                        Manage Reviews
                     </a>
                 </li>
             <li class="nav-item mt-4">

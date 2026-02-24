@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Models\Career;
 
 class UserController extends Controller
 {
@@ -18,7 +19,8 @@ class UserController extends Controller
 
     public function careers()
     {
-        return view('user.careers');
+        $careers = Career::all();
+        return view('user.careers', compact('careers'));
     }
 
     public function products()

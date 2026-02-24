@@ -16,4 +16,9 @@ class Career extends Model
         'experience',
         'skills',
     ];
+
+    public function applications()
+{
+    return $this->hasMany(CareerApplication::class);
+}
 }

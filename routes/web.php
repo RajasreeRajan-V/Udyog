@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CareerApplicationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ Route::get('/gallery', [UserController::class, 'gallery'])->name('gallery');
 
 Route::get('/offers', [UserController::class, 'offers'])->name('offers');
 
+Route::resource('apply', CareerApplicationController::class);
 
 
 require __DIR__.'/auth.php';

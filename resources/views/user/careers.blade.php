@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers | Udyod Granite</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
     <!-- Fonts, Icons, CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        .is-invalid {
+    border: 1px solid #e74c3c !important;
+}
+
+.error-text {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+    </style>
 </head>
+
 <body>
 
     <!-- Header & Navigation -->
@@ -46,85 +62,72 @@
     </header>
 
     <div style="height: 100px;"></div>
-
+    @if(session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <section class="container careers-content">
         <div class="text-center" style="margin-bottom: 50px;">
             <h1 class="section-title">Career Opportunities</h1>
-            <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">Join a team that values craftsmanship, innovation, and dedication.</p>
+            <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">
+                Join a team that values craftsmanship, innovation, and dedication.
+            </p>
         </div>
 
         <div class="careers-grid">
-            <!-- Job Card 1 -->
-            <div class="job-card" data-aos="fade-up">
-                <div class="job-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <h3 class="job-title">Sales Manager</h3>
-                <p class="salary-range">₹30k - ₹50k / Month</p>
-                <div class="job-description">
-                    <strong>Description:</strong> We are looking for an experienced Sales Manager to lead our regional sales team and drive growth.
-                </div>
-                <ul class="job-qualifications">
-                    <li><i class="fas fa-check"></i> 5+ Years Experience</li>
-                    <li><i class="fas fa-check"></i> Strong Leadership Skills</li>
-                    <li><i class="fas fa-check"></i> Granite Industry Knowledge</li>
-                </ul>
-                <button class="btn btn-primary small-btn btn-full-width apply-btn" data-job="Sales Manager">Apply Now</button>
-            </div>
-            
-            <!-- Job Card 2 -->
-            <div class="job-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="job-icon">
-                    <i class="fas fa-hard-hat"></i>
-                </div>
-                <h3 class="job-title">Site Supervisor</h3>
-                <p class="salary-range">₹25k - ₹40k / Month</p>
-                <div class="job-description">
-                    <strong>Description:</strong> Oversee on-site installations and ensure quality standards are met for every project.
-                </div>
-                <ul class="job-qualifications">
-                    <li><i class="fas fa-check"></i> B.Tech / Diploma Civil</li>
-                    <li><i class="fas fa-check"></i> Project Management</li>
-                    <li><i class="fas fa-check"></i> Problem Solving</li>
-                </ul>
-                <button class="btn btn-primary small-btn btn-full-width apply-btn" data-job="Site Supervisor">Apply Now</button>
-            </div>
-            
-            <!-- Job Card 3 -->
-            <div class="job-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="job-icon">
-                    <i class="fas fa-drafting-compass"></i>
-                </div>
-                <h3 class="job-title">CAD Designer</h3>
-                <p class="salary-range">₹20k - ₹35k / Month</p>
-                 <div class="job-description">
-                    <strong>Description:</strong> Create precise technical drawings and visual layouts for client approval.
-                </div>
-                <ul class="job-qualifications">
-                    <li><i class="fas fa-check"></i> AutoCAD Proficiency</li>
-                    <li><i class="fas fa-check"></i> Creative Portfolio</li>
-                    <li><i class="fas fa-check"></i> Detail Oriented</li>
-                </ul>
-                <button class="btn btn-primary small-btn btn-full-width apply-btn" data-job="CAD Designer">Apply Now</button>
-            </div>
+            @forelse($careers as $career)
+                <div class="job-card" data-aos="fade-up">
 
-             <!-- Job Card 4 -->
-            <div class="job-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="job-icon">
-                    <i class="fas fa-user-friends"></i>
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+
+                    <!-- Job Title -->
+                    <h3 class="job-title">
+                        {{ $career->job_title }}
+                    </h3>
+
+                    <!-- Salary -->
+                    <p class="salary-range">
+                        {{ $career->salary_range }}
+                    </p>
+
+                    <!-- Description -->
+                    <div class="job-description">
+                        <strong>Description:</strong>
+                        {{ $career->description }}
+                    </div>
+
+                    <!-- Experience -->
+                    <ul class="job-qualifications">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            {{ $career->experience }}
+                        </li>
+
+                        <!-- Skills (comma separated) -->
+                        @foreach(explode(',', $career->skills) as $skill)
+                            <li>
+                                <i class="fas fa-check"></i>
+                                {{ trim($skill) }}
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    @foreach($careers as $career)
+                        <button class="btn btn-primary small-btn btn-full-width open-apply-modal" data-id="{{ $career->id }}"
+                            data-title="{{ $career->job_title }}">
+                            Apply Now
+                        </button>
+                    @endforeach
+
                 </div>
-                <h3 class="job-title">Customer Support</h3>
-                <p class="salary-range">₹15k - ₹25k / Month</p>
-                 <div class="job-description">
-                    <strong>Description:</strong> Handle client inquiries and coordinate with the sales team for seamless service.
+            @empty
+                <div class="text-center">
+                    <p>No career opportunities available at the moment.</p>
                 </div>
-                <ul class="job-qualifications">
-                    <li><i class="fas fa-check"></i> Excellent Communication</li>
-                    <li><i class="fas fa-check"></i> Basic Computer Skills</li>
-                    <li><i class="fas fa-check"></i> Client handling</li>
-                </ul>
-                <button class="btn btn-primary small-btn btn-full-width apply-btn" data-job="Customer Support">Apply Now</button>
-            </div>
+            @endforelse
         </div>
     </section>
 
@@ -133,22 +136,59 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Apply Now</h2>
-            <form id="applicationForm" class="contact-form">
-                <input type="hidden" id="jobRole" name="jobRole">
+
+            <form action="{{ route('apply.store') }}" method="POST" enctype="multipart/form-data" class="contact-form">
+
+                @csrf
+
+                <!-- Hidden Career ID -->
+                <input type="hidden" id="career_id" name="career_id">
+
+                <!-- Job Title (Readonly Display) -->
                 <div class="form-group">
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" id="job_title_display" placeholder="Job Title" readonly>
                 </div>
+
                 <div class="form-group">
-                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="text" name="full_name" placeholder="Full Name" value="{{ old('full_name') }}"
+                        class="@error('full_name') is-invalid @enderror">
+
+                    @error('full_name')
+                        <small class="error-text">{{ $message }}</small>
+                    @enderror
                 </div>
+
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone_number" placeholder="Phone Number" value="{{ old('phone_number') }}"
+                        class="@error('phone_number') is-invalid @enderror">
+
+                    @error('phone_number')
+                        <small class="error-text">{{ $message }}</small>
+                    @enderror
                 </div>
+
                 <div class="form-group">
-                    <label for="resume">Upload Resume (PDF, Doc)</label>
-                    <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+                    <input type="email" name="email_address" placeholder="Email Address"
+                        value="{{ old('email_address') }}" class="@error('email_address') is-invalid @enderror">
+
+                    @error('email_address')
+                        <small class="error-text">{{ $message }}</small>
+                    @enderror
                 </div>
-                <button type="submit" class="btn btn-primary btn-full-width">Submit Application</button>
+
+                <div class="form-group">
+                    <label>Upload Resume (PDF, Doc)</label>
+                    <input type="file" name="resume" accept=".pdf,.doc,.docx"
+                        class="@error('resume') is-invalid @enderror">
+
+                    @error('resume')
+                        <small class="error-text">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full-width">
+                    Submit Application
+                </button>
             </form>
         </div>
     </div>
@@ -162,9 +202,10 @@
                         <img src="assets/images/logo_main3.png" alt="Udyod Granite">
                         <!-- <span>Udyod Granite</span> -->
                     </div>
-                    <p class="footer-desc">Providing premium quality granite and marble solutions for residential and commercial projects since 2005.</p>
+                    <p class="footer-desc">Providing premium quality granite and marble solutions for residential and
+                        commercial projects since 2005.</p>
                 </div>
-                
+
                 <div class="footer-col footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -175,7 +216,7 @@
                         <li><a href="gallery.html">Gallery</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-col footer-links">
                     <h4>Support</h4>
                     <ul>
@@ -184,13 +225,15 @@
                         <li><a href="offers.html">Offers</a></li>
                     </ul>
                 </div>
-                
-             <div class="footer-col footer-social">
+
+                <div class="footer-col footer-social">
                     <h4>Contact Us</h4>
                     <ul class="footer-contact-details">
-                        <li><i class="fas fa-map-marker-alt"></i> Granite udyog, Kinfra small industries Park, seethangoli 671321</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Granite udyog, Kinfra small industries Park,
+                            seethangoli 671321</li>
                         <li><i class="fas fa-phone-alt"></i> <a href="tel:04994240331">04994 240331</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@udyodgranite.com">info@udyodgranite.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@udyodgranite.com">info@udyodgranite.com</a></li>
                     </ul>
 
                     <h4 style="margin-top: 20px;">Follow Us</h4>
@@ -202,7 +245,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2026 Udyod Granite. All Rights Reserved.</p>
                 <p class="designer-credits">Designed by Astra Software Solutions</p>
@@ -211,29 +254,26 @@
     </footer>
 
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
-     <script src="assets/js/dist_aos.js"></script>
+    <script src="assets/js/dist_aos.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        // Modal Functionality
         const modal = document.getElementById('applicationModal');
         const closeBtn = document.querySelector('.close-modal');
-        const applyBtns = document.querySelectorAll('.apply-btn');
-        const jobRoleInput = document.getElementById('jobRole');
-        const applicationForm = document.getElementById('applicationForm');
 
-        // Open Modal
-        applyBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const jobRole = btn.getAttribute('data-job');
-                jobRoleInput.value = jobRole;
-                // Update modal title logic if needed, e.g., "Apply for " + jobRole
+        document.querySelectorAll('.open-apply-modal').forEach(button => {
+            button.addEventListener('click', function () {
+
+                let careerId = this.dataset.id;
+                let jobTitle = this.dataset.title;
+
+                document.getElementById('career_id').value = careerId;
+                document.getElementById('job_title_display').value = jobTitle;
+
                 modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden';
             });
         });
 
-        // Close Modal
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
@@ -241,22 +281,19 @@
 
         closeBtn.addEventListener('click', closeModal);
 
-        // Close on outside click
-        window.addEventListener('click', (e) => {
+        window.addEventListener('click', function (e) {
             if (e.target === modal) {
                 closeModal();
             }
         });
-
-        // Form Submit
-        applicationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Simulate submission
-            const formData = new FormData(applicationForm);
-            alert(`Application for ${jobRoleInput.value} submitted successfully!\nWe will contact you shortly.`);
-            applicationForm.reset();
-            closeModal();
-        });
+    </script>
+    <script>
+        @if ($errors->any())
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById('applicationModal').classList.add('active');
+            });
+        @endif
     </script>
 </body>
+
 </html>
