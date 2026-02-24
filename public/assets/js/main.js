@@ -304,14 +304,13 @@ function initTestimonials() {
     // Contact Form Handling
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Simulate form submission
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Sending...';
-            btn.disabled = true;
+    contactForm.addEventListener('submit', () => {
+
+        const btn = contactForm.querySelector('button');
+        const originalText = btn.innerText;
+
+        btn.innerText = 'Sending...';
+        btn.disabled = true;
             
             setTimeout(() => {
                 btn.innerText = 'Message Sent!';

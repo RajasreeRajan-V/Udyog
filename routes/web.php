@@ -25,5 +25,7 @@ Route::get('/offers', [UserController::class, 'offers'])->name('offers');
 
 Route::resource('apply', CareerApplicationController::class);
 
+Route::post('/contact', [UserController::class, 'contactStore'])->name('contact');
+
 
 require __DIR__.'/auth.php';

@@ -25,5 +25,13 @@ Route::name('admin.')->group(function () {
         Route::resource('reviews', ReviewController::class);
 
         Route::resource('applications', AdminApplicationController::class);
+
+        Route::resource('contactus', ContactusController::class);
+
+        Route::post('/contactus/reply/{id}', [ContactUsController::class, 'reply'])
+     ->name('contactus.reply');
+
         });
+
+
 });

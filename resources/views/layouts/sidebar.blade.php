@@ -28,51 +28,66 @@
             </li>
 
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.aboutus.index') }}" class="nav-link {{ request()->routeIs('admin.aboutus.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.aboutus.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.aboutus.index') ? 'active' : '' }}">
                     Manage About Us
                 </a>
             </li>
 
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.teams.index') }}" class="nav-link {{ request()->routeIs('admin.teams.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.teams.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.teams.index') ? 'active' : '' }}">
                     Manage Team Members
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.products.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
                     Manage Products
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.services.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.services.index') ? 'active' : '' }}">
                     Manage Services
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.galleries.index') }}" class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.galleries.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">
                     Manage Gallery
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.careers.index') }}" class="nav-link {{ request()->routeIs('admin.careers.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.careers.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.careers.index') ? 'active' : '' }}">
                     Manage Careers
                 </a>
             </li>
-                <li class="nav-item mb-2">
-                    <a href="{{ route('admin.offers.index') }}" class="nav-link {{ request()->routeIs('admin.offers.index') ? 'active' : '' }}">
-                        Manage Offers
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                        <a href="{{ route('admin.reviews.index') }}" class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active' : '' }}">
-                            Manage Reviews
-                        </a>
-                    </li>
-              <li class="nav-item mb-2">
-                        <a href="{{ route('admin.applications.index') }}" class="nav-link {{ request()->routeIs('admin.applications.index') ? 'active' : '' }}">
-                            Manage Applications
-                        </a>
-                    </li>
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.offers.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.offers.index') ? 'active' : '' }}">
+                    Manage Offers
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.reviews.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active' : '' }}">
+                    Manage Reviews
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.applications.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.applications.index') ? 'active' : '' }}">
+                    Manage Applications
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.contactus.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.contactus.index') ? 'active' : '' }}">
+                    Manage Contact enquiries
+                </a>
+            </li>
             <li class="nav-item mt-4">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -133,131 +148,132 @@
 </div>
 
 <style>
-  /* Mobile Toggle Button */
-.btn-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1040;
-    background-color: #A0D25D;
-    color: #3A3A3A;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-toggle:hover {
-    background-color: #3A3A3A;
-    color: #A0D25D;
-    transform: scale(1.05);
-}
-
-.btn-toggle:active {
-    transform: scale(0.95);
-}
-
-/* Offcanvas Sidebar Styling */
-.offcanvas {
-    background: #3A3A3A;
-}
-
-.offcanvas-header {
-    background-color: rgba(160, 210, 93, 0.08);
-    border-bottom: 1px solid rgba(160, 210, 93, 0.2) !important;
-}
-
-.offcanvas-title {
-    color: #A0D25D !important;
-}
-
-.offcanvas .btn-close {
-    filter: invert(1);
-    opacity: 0.8;
-}
-
-.offcanvas .btn-close:hover {
-    opacity: 1;
-}
-
-/* Offcanvas navigation links */
-.offcanvas .nav-link {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 6px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-weight: 500;
-}
-
-.offcanvas .nav-link:hover {
-    background-color: rgba(160, 210, 93, 0.15);
-    color: #A0D25D;
-}
-
-.offcanvas .nav-link.active {
-    background-color: #A0D25D;
-    color: #3A3A3A;
-    font-weight: 600;
-}
-
-.offcanvas .nav-link.text-danger {
-    color: #A0D25D !important;
-    border-top: 1px solid rgba(160, 210, 93, 0.2);
-    padding-top: 16px;
-}
-
-.offcanvas .nav-link.text-danger:hover {
-    background-color: rgba(160, 210, 93, 0.15);
-    color: #ffffff !important;
-}
-
-/* Adjust main content padding on mobile */
-@media (max-width: 991.98px) {
-    .flex-grow-1 {
-        padding-top: 80px !important;
+    /* Mobile Toggle Button */
+    .btn-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1040;
+        background-color: #A0D25D;
+        color: #3A3A3A;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
     }
 
-    body {
-        margin-left: 0 !important;
+    .btn-toggle:hover {
+        background-color: #3A3A3A;
+        color: #A0D25D;
+        transform: scale(1.05);
     }
-}
 
-/* Sidebar scroll */
-.sidebar {
-    max-height: 100vh;
-    overflow-y: auto;
-}
+    .btn-toggle:active {
+        transform: scale(0.95);
+    }
 
-/* Optional: styled scrollbar */
-.sidebar::-webkit-scrollbar {
-    width: 6px;
-}
+    /* Offcanvas Sidebar Styling */
+    .offcanvas {
+        background: #3A3A3A;
+    }
 
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: #A0D25D;
-    border-radius: 3px;
-}
+    .offcanvas-header {
+        background-color: rgba(160, 210, 93, 0.08);
+        border-bottom: 1px solid rgba(160, 210, 93, 0.2) !important;
+    }
 
-.sidebar::-webkit-scrollbar-track {
-    background: transparent;
-}
-/* Sidebar Styling */
-.sidebar {
-    width: 260px;
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow-y: auto;
+    .offcanvas-title {
+        color: #A0D25D !important;
+    }
 
-    background: linear-gradient(135deg, #3A3A3A 40%, #A0D25D 100%);
-    box-shadow: 2px 0 18px rgba(0, 0, 0, 0.15);
+    .offcanvas .btn-close {
+        filter: invert(1);
+        opacity: 0.8;
+    }
 
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-}
+    .offcanvas .btn-close:hover {
+        opacity: 1;
+    }
+
+    /* Offcanvas navigation links */
+    .offcanvas .nav-link {
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 12px 16px;
+        margin-bottom: 6px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+    }
+
+    .offcanvas .nav-link:hover {
+        background-color: rgba(160, 210, 93, 0.15);
+        color: #A0D25D;
+    }
+
+    .offcanvas .nav-link.active {
+        background-color: #A0D25D;
+        color: #3A3A3A;
+        font-weight: 600;
+    }
+
+    .offcanvas .nav-link.text-danger {
+        color: #A0D25D !important;
+        border-top: 1px solid rgba(160, 210, 93, 0.2);
+        padding-top: 16px;
+    }
+
+    .offcanvas .nav-link.text-danger:hover {
+        background-color: rgba(160, 210, 93, 0.15);
+        color: #ffffff !important;
+    }
+
+    /* Adjust main content padding on mobile */
+    @media (max-width: 991.98px) {
+        .flex-grow-1 {
+            padding-top: 80px !important;
+        }
+
+        body {
+            margin-left: 0 !important;
+        }
+    }
+
+    /* Sidebar scroll */
+    .sidebar {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    /* Optional: styled scrollbar */
+    .sidebar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+        background-color: #A0D25D;
+        border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+        width: 260px;
+        min-height: 100vh;
+        max-height: 100vh;
+        overflow-y: auto;
+
+        background: linear-gradient(135deg, #3A3A3A 40%, #A0D25D 100%);
+        box-shadow: 2px 0 18px rgba(0, 0, 0, 0.15);
+
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+    }
 </style>
 
 <script>
