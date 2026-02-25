@@ -27,5 +27,5 @@ Route::resource('apply', CareerApplicationController::class);
 
 Route::post('/contact', [UserController::class, 'contactStore'])->name('contact');
 
-
+// Route::get('/forgot-password', [UserController::class, 'forgotPassword'])->name('forgot-password');
 require __DIR__.'/auth.php';

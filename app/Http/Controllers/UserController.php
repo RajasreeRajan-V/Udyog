@@ -66,4 +66,8 @@ class UserController extends Controller
         ->with('success', 'Your message has been sent successfully!')
         ->withFragment('contact');
     }
+    public function forgotPassword()
+    {
+        return view('admin.forgot-password');
+    }
 }
