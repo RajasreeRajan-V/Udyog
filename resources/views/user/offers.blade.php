@@ -21,7 +21,7 @@
     <header id="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html">
+                <a href="{{ route('home') }}">
                     <img src="assets/images/logo_main3.png" alt="Udyod Granite Logo">
                     <!-- <span>Udyod Granite</span> -->
                 </a>
@@ -129,20 +129,20 @@
                 <div class="footer-col footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('about') }}">About Us</a></li>
+                        <li><a href="{{ route('products') }}">Products</a></li>
+                        <li><a href="{{ route('home') }}#services">Services</a></li>
+                        <li><a href="{{ route('gallery') }}">Gallery</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col footer-links">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="index.html#contact">Contact Us</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="offers.html">Offers</a></li>
+                        <li><a href="{{ route('home') }}#contact">Contact Us</a></li>
+                        <li><a href="{{ route('careers') }}">Careers</a></li>
+                        <li><a href="{{ route('offers') }}">Offers</a></li>
                     </ul>
                 </div>
                 
@@ -156,10 +156,10 @@
 
                     <h4 style="margin-top: 20px;">Follow Us</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/share/19vdGUEGPD/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/graniteudyog?igsh=eWl0MHY2c3FvNmV5"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:graniteudyog123@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/9496431624"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
