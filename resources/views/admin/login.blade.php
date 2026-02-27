@@ -584,7 +584,7 @@ body::after {
         <button type="submit" class="login-btn">Enter</button>
 
         <div class="extra-links">
-            <a href="#">Forgot Password?</a>
+            <a href="{{ route('password') }}">Forgot Password?</a>
         </div>
 
     </form>

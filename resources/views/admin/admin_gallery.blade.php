@@ -88,8 +88,15 @@
     </div>
 
 </div>
-
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 {{-- EDIT MODALS --}}
 @foreach($galleries as $gallery)
 <div class="modal fade" id="editGalleryModal{{ $gallery->id }}" tabindex="-1">
@@ -197,10 +204,10 @@
                                 class="form-control"
                                 required>
                             <option value="">-- Select Category --</option>
-                            <option value="Granite">Project</option>
-                            <option value="Marble">Work Process</option>
-                            <option value="Tiles">Team </option>
-                            <option value="Natural Stones">Celebrations</option>
+                            <option value="project">Project</option>
+                            <option value="work_process">Work Process</option>
+                            <option value="team">Team </option>
+                            <option value="Celebrations">Celebrations</option>
                            
                         </select>
                     </div>

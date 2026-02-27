@@ -53,76 +53,77 @@
 
     <!-- Company History -->
     <!-- Founder Story Section -->
-    <section class="container about-container" >
+<!-- About Section -->
+<section class="container about-container">
+    @foreach($about as $item)
         <div class="founder-story-section">
+
+            <!-- ===== PEOPLE CARDS ===== -->
             <div class="story-images">
+                <!-- Person 1 -->
                 <div class="founder-card" data-aos="fade-right">
-                    <img src="assets/images/cv4.jpg" alt="Founder Name">
+                    <img src="{{ asset('storage/' . $item->person1_image) }}" 
+                         alt="{{ $item->person1_name }}">
                     <div class="founder-info">
-                        <h4>Mr. Name</h4>
-                        <p>Founder</p>
+                        <h4>{{ $item->person1_name }}</h4>
+                        <p>{{ $item->person1_position }}</p>
                     </div>
                 </div>
+
+                <!-- Person 2 -->
                 <div class="founder-card" data-aos="fade-left" data-aos-delay="200">
-                    <img src="assets/images/ptr4.JPG" alt="Proprietor Name">
+                    <img src="{{ asset('storage/' . $item->person2_image) }}" 
+                         alt="{{ $item->person2_name }}">
                     <div class="founder-info">
-                        <h4>Mrs.Bindu C</h4>
-                        <p>Proprietor</p>
+                        <h4>{{ $item->person2_name }}</h4>
+                        <p>{{ $item->person2_position }}</p>
                     </div>
                 </div>
             </div>
+
+            <!-- ===== CONTENT ===== -->
             <div class="story-content" data-aos="fade-up">
-                <h2 class="story-title">Crafting Legacy in Stone</h2>
-                <h4 class="story-subtitle">Our Journey of Excellence</h4>
-                <p>
-                    Udyod Granite was born from a vision to bring the world's finest natural stones to distinctive homes and commercial spaces. Established in 2005 by Mr. Rajesh Kumar, our humble beginning was fueled by a passion for quality and an eye for the unique patterns hidden within the earth.
-                </p>
-                <p>
-                    Over the decades, under the dynamic leadership of Mr. Amit Singh, we have evolved from a local supplier to a premier stone house. We believe that every slab of granite and marble tells a story, and our mission is to help you write yours. With state-of-the-art processing and an unyielding commitment to customer satisfaction, we continue to set benchmarks in the industry.
-                </p>
+                <h2 class="story-title">{{ $item->heading }}</h2>
+                <h4 class="story-subtitle">{{ $item->title }}</h4>
+
+                <p>{{ $item->description }}</p>
+
                 <div class="story-signature">
-                    <p>Building Dreams, One Stone at a Time.</p>
+                    <p>{{ $item->tagline }}</p>
                 </div>
             </div>
+
         </div>
-    </section>
+    @endforeach
+</section>
 
     <!-- Key Members -->
-    <section style="background-color: var(--bg-light);">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Our Team</h2>
-            <div class="team-grid">
-                <!-- Member 1 -->
+<!-- Team Section -->
+<section style="background-color: var(--bg-light);">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">
+            Our Team
+        </h2>
+
+        <div class="team-grid">
+            @foreach($team as $member)
                 <div class="team-member" data-aos="zoom-in">
-                    <img src="assets/images/cv1.jpg" alt="CEO">
-                    <h4 style="margin-bottom: 5px; color: var(--primary-blue);">Name</h4>
-                    <p class="team-role">Founder</p>
+                    <img src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}">
+                    <h4 style="margin-bottom: 5px; color: var(--primary-blue);">
+                        {{ $member->name }}
+                    </h4>
+                    <p class="team-role">
+                        {{ $member->position }}
+                    </p>
                 </div>
-                <!-- Member 2 -->
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="assets/images/cv2.jpg" alt="Manager">
-                    <h4 style="margin-bottom: 5px; color: var(--primary-blue);">Name</h4>
-                    <p class="team-role">Operations Manager</p>
-                </div>
-                 <!-- Member 3 -->
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/images/cv3.jpg" alt="Sales Head">
-                    <h4 style="margin-bottom: 5px; color: var(--primary-blue);">Name</h4>
-                    <p class="team-role">Head of Sales</p>
-                </div>
-                 <!-- Member 4 -->
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/images/cv4.jpg" alt="Sales Head">
-                    <h4 style="margin-bottom: 5px; color: var(--primary-blue);">Name</h4>
-                    <p class="team-role">Head of Sales</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="index.html" class="btn btn-primary">Back to Home</a>
-            </div>
+            @endforeach
         </div>
-    </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="{{ url('/') }}" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">

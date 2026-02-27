@@ -109,70 +109,9 @@ function initTestimonials() {
     const quoteText = testimonialQuote.querySelector('.quote-text');
 
     // Mock data for 10 testimonials
-    const testimonialsData = [
-      {
-        name: "Emma Johnson",
-        title: "Founder, Design Studio",
-        quote:
-          "We had an excellent experience with Granite Udyog. Their granite and marble quality is outstanding, and the team ensured timely delivery and professional guidance throughout our project.",
-      },
-      {
-        name: "Michael Chen",
-        title: "CEO, Tech Innovations",
-        quote:
-          "Granite Udyog offered us a wide range of premium tiles and natural stones. Their customer service was efficient, transparent, and highly supportive from selection to installation.",
-      },
-      {
-        name: "Sarah Williams",
-        title: "Marketing Director, Retail Corp",
-        quote:
-          "The products supplied by Granite Udyog are durable and elegant. Their pricing is fair, and the professionalism of their staff makes them a reliable partner for construction materials.",
-      },
-      {
-        name: "David Brown",
-        title: "Operations Manager, Events Plus",
-        quote:
-          "We are very satisfied with Granite Udyog’s services. Their granite and marble collections enhanced the overall look of our interiors, and the delivery process was smooth and dependable.",
-      },
-      {
-        name: "Lisa Anderson",
-        title: "Brand Manager, Luxury Brands",
-        quote:
-          "Granite Udyog consistently provides high-quality stone materials. Their knowledgeable staff helped us select the best options, ensuring both aesthetic appeal and structural strength for our building project",
-      },
-      {
-        name: "James Wilson",
-        title: "Director, Sports Marketing",
-        quote:
-          "Our company has been sourcing tiles and natural stones from Granite Udyog for several years. Their commitment to quality and customer satisfaction has always met our expectations.",
-      },
-      {
-        name: "Maria Garcia",
-        title: "VP Marketing, Corporate Solutions",
-        quote:
-          "Granite Udyog is our preferred supplier for granite and marble. Their attention to detail, professional approach, and timely support make them a trusted name in the stone industry.",
-      },
-      {
-        name: "Robert Taylor",
-        title: "Founder, Startup Hub",
-        quote:
-          "We appreciate Granite Udyog’s dedication to delivering premium products and excellent service. Their natural stones and tiles significantly improved the finish and appearance of our property.",
-      },
-      {
-        name: "Jennifer Martinez",
-        title: "Creative Director, Ad Agency",
-        quote:
-          "The quality and variety offered by Granite Udyog are impressive. Their team provided clear communication and reliable delivery, making the entire purchasing process seamless and efficient.",
-      },
-      {
-        name: "Christopher Lee",
-        title: "Project Manager, Construction Co",
-        quote:
-          "Granite Udyog exceeded our expectations with their superior materials and customer-oriented service. Their granite, marble, and tile selections are ideal for high-end residential and commercial projects.",
-      },
-    ];
+    
 
-    let currentCenterIndex = 2; // Start with index 2 as center (showing items 0-4 initially)
+    let currentCenterIndex = testimonialsData.length > 2 ? 2 : 0; // Start with index 2 as center (showing items 0-4 initially)
     let autoRotateInterval;
 
     // Update visible items based on center index

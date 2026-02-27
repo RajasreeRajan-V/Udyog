@@ -7,17 +7,37 @@ use App\Models\Career;
 use App\Models\Contactus;
 use App\Mail\ContactThankYouMail;
 use Illuminate\Support\Facades\Mail;
-
+use App\Models\Service;
+use App\Models\Offer;
+use App\Models\Gallery;
+use App\Models\AboutUs;
+use App\Models\Team;
+use App\Models\Product;
+use App\Models\Review;
+ 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user.index');
+        $services = Service::all();
+        $about = AboutUs::latest()->get();
+        $offers = Offer::all();
+        $reviews = Review::all();
+        $reviewsData = $reviews->map(function ($review) {
+            return [
+                'name' => $review->name,
+                'title' => $review->designation,
+                'quote' => $review->review,
+            ];
+        });
+        return view('user.index', compact('services','about','offers','reviews','reviewsData'));
     }   
 
     public function about()
     {
-        return view('user.about');
+        $about = AboutUs::latest()->get();
+        $team = Team::all();
+        return view('user.about', compact('about','team'));
     }  
 
     public function careers()
@@ -28,15 +48,18 @@ class UserController extends Controller
 
     public function products()
     {
-        return view('user.products');
+        $product = Product::all();
+        return view('user.products', compact('product'));
     }
     public function gallery()
     {
-        return view('user.gallery');
+        $gallery = Gallery::all();
+        return view('user.gallery', compact('gallery'));
     }
     public function offers()
     {
-        return view('user.offers');
+        $offers = Offer::all();
+        return view('user.offers', compact('offers'));
     }
     public function contactStore(Request $request)
     {

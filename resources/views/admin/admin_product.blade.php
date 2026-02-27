@@ -51,7 +51,7 @@
                                 </td>
 
                                 <td>{{ $product->name }}</td>
-                                <td>{{ Str::limit($product->description, 50) }}</td>
+                                <td>{{ $product->description }}</td>
                                 <td>{{ $product->size }}</td>
                                 <td>{{ $product->category }}</td>
 

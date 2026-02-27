@@ -56,7 +56,7 @@
 
                             <td>{{ $review->name }}</td>
                             <td>{{ $review->designation }}</td>
-                            <td>{{ Str::limit($review->review, 50) }}</td>
+                            <td>{{ $review->review }}</td>
 
                             <td>
                                 <button class="btn btn-sm btn-warning"
@@ -213,8 +213,7 @@
                         <label>Image</label>
                         <input type="file"
                                name="img"
-                               class="form-control"
-                               required>
+                               class="form-control">
                     </div>
 
                 </div>

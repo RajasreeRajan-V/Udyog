@@ -47,65 +47,38 @@
 
     <div style="height: 100px;"></div>
 
-    <section class="container">
-        <div class="text-center" style="margin-top: 50px;">
-            <h1 class="section-title">Our Gallery</h1>
-            <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">A visual journey through our projects, work process, and team celebrations.</p>
-        </div>
-        
-        <!-- Filter Buttons -->
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="projects">Projects</button>
-            <button class="filter-btn" data-filter="process">Work Process</button>
-            <button class="filter-btn" data-filter="team">Team</button>
-            <button class="filter-btn" data-filter="celebrations">Celebrations</button>
-        </div>
-        
-        <!-- Gallery Grid -->
-        <div class="gallery-grid-page">
-            <!-- Projects -->
-            <div class="gallery-img-container gallery-item-grid" data-category="projects">
-                <img src="assets/images/w1.jpg" alt="Luxury Kitchen">
+<section class="container">
+    <div class="text-center" style="margin-top: 50px;">
+        <h1 class="section-title">Our Gallery</h1>
+        <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">
+            A visual journey through our projects, work process, and team celebrations.
+        </p>
+    </div>
+
+    <!-- ================= FILTER BUTTONS ================= -->
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="project">Projects</button>
+        <button class="filter-btn" data-filter="work_process">Work Process</button>
+        <button class="filter-btn" data-filter="team">Team</button>
+        <button class="filter-btn" data-filter="Celebrations">Celebrations</button>
+    </div>
+
+    <!-- ================= GALLERY GRID ================= -->
+    <div class="gallery-grid-page">
+        @forelse($gallery as $item)
+            <div class="gallery-img-container gallery-item-grid"
+                 data-category="{{ $item->category }}">
+                
+                <img 
+    src="{{ asset('storage/' . $item->img) }}" 
+    alt="{{ $item->title }}">
             </div>
-            <div class="gallery-img-container gallery-item-grid" data-category="projects">
-                <img src="assets/images/w2.jpg" alt="Modern Bathroom">
-            </div>
-            
-            <!-- Process -->
-            <div class="gallery-img-container gallery-item-grid" data-category="process">
-                <img src="assets/images/wp1.jpg" alt="Polishing Granite">
-            </div>
-            <div class="gallery-img-container gallery-item-grid" data-category="process">
-                <img src="assets/images/wp2.jpg" alt="Cutting Stone">
-            </div>
-            <div class="gallery-img-container gallery-item-grid" data-category="process">
-                <img src="assets/images/wp3.jpg" alt="Cutting Stone">
-            </div>
-            
-            <!-- Team -->
-            <div class="gallery-img-container gallery-item-grid" data-category="team">
-                <img src="assets/images/tm1.jpg" alt="Team Meeting">
-            </div>
-            <div class="gallery-img-container gallery-item-grid" data-category="team">
-                <img src="assets/images/tm2.jpg" alt="Team Meeting">
-            </div>
-            <div class="gallery-img-container gallery-item-grid" data-category="team">
-                <img src="assets/images/tm3.jpg" alt="Team Meeting">
-            </div>
-            
-             <!-- Celebrations -->
-            <div class="gallery-img-container gallery-item-grid" data-category="celebrations">
-                <img src="assets/images/cb1.jpg" alt="Company Anniversary">
-            </div>
-             <div class="gallery-img-container gallery-item-grid" data-category="celebrations">
-                <img src="assets/images/cb2.jpg" alt="Diwali Celebration">
-            </div>
-             <div class="gallery-img-container gallery-item-grid" data-category="celebrations">
-                <img src="assets/images/cb3.jpg" alt="Diwali Celebration">
-            </div>
-        </div>
-    </section>
+        @empty
+            <p class="text-center">No gallery images available.</p>
+        @endforelse
+    </div>
+</section>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
@@ -113,7 +86,7 @@
         <img src="" alt="Gallery Image" class="lightbox-img">
         <div class="lightbox-caption"></div>
     </div>
-
+<br>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -174,54 +147,61 @@
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
      <script src="assets/js/dist_aos.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        // Filters
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        // Changed selector to match new class name
-        const items = document.querySelectorAll('.gallery-item-grid');
+<script>
+    /* ================= FILTERING ================= */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item-grid');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filterValue = btn.getAttribute('data-filter');
-                
-                items.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.classList.remove('hide');
-                        item.style.animation = 'none';
-                        item.offsetHeight; 
-                        item.style.animation = 'fadeIn 0.5s ease forwards';
-                    } else {
-                        item.classList.add('hide');
-                    }
-                });
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Active button state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            items.forEach(item => {
+                const category = item.getAttribute('data-category');
+
+                if (filterValue === 'all' || category === filterValue) {
+                    item.classList.remove('hide');
+
+                    // Restart animation
+                    item.style.animation = 'none';
+                    item.offsetHeight; // trigger reflow
+                    item.style.animation = 'fadeIn 0.5s ease forwards';
+                } else {
+                    item.classList.add('hide');
+                }
             });
         });
+    });
 
-        // Lightbox
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.querySelector('.lightbox-img');
-        const lightboxCaption = document.querySelector('.lightbox-caption');
-        const closeBtn = document.querySelector('.lightbox-close');
-        
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                const caption = img.getAttribute('alt');
-                lightbox.style.display = 'flex';
-                lightboxImg.src = img.src;
-                lightboxCaption.textContent = caption;
-            });
+    /* ================= LIGHTBOX ================= */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxCaption = document.querySelector('.lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+
+            lightbox.style.display = 'flex';
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = img.alt || '';
         });
-        
-        closeBtn.addEventListener('click', () => {
+    });
+
+    closeBtn.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
             lightbox.style.display = 'none';
-        });
-        
-        lightbox.addEventListener('click', (e) => {
-            if(e.target === lightbox) lightbox.style.display = 'none';
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 </html>

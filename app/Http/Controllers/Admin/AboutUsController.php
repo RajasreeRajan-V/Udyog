@@ -90,7 +90,7 @@ class AboutUsController
     public function update(Request $request, $id)
     {
        $about = AboutUs::findOrFail($id);
-        $request->validate([
+        $validated = $request->validate([
         'heading' => 'required|string|max:255',
         'title' => 'required|string|max:255',
         'tagline' => 'required|string|max:255',
@@ -103,8 +103,19 @@ class AboutUsController
         'person2_name' => 'required|string|max:255',
         'person2_position' => 'required|string|max:255',
         'person2_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
-    $about->update($request->all());
+        ]);
+
+    if ($request->hasFile('person1_image')) {
+        $validated['person1_image'] =
+            $request->file('person1_image')->store('about', 'public');
+    }
+
+    if ($request->hasFile('person2_image')) {
+        $validated['person2_image'] =
+            $request->file('person2_image')->store('about', 'public');
+    }
+
+    $about->update($validated);
     return redirect()
         ->back()
         ->with('success', 'About Us section updated successfully.');

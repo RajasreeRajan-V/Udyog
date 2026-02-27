@@ -119,24 +119,33 @@
                                 <div class="decor-text quality">PREMIUM<br>QUALITY</div> -->
                                 <!-- <img src="logo_main33.png" alt="Logo"> -->
                             </div>
-                            <div class="image-frame">
-                                <!-- Front Side -->
-                                <div class="card-face card-front">
-                                    <img src="assets/images/cv4.jpg" alt="Founder">
-                                    <div class="card-info">
-                                        <span class="card-name">Name</span>
-                                        <span class="card-designation">Founder</span>
+                            @foreach ($about as $item)
+                                <div class="image-frame">
+
+                                    <!-- Front Side -->
+                                    <div class="card-face card-front">
+                                        <img src="{{ asset('storage/' . $item->person1_image) }}"
+                                            alt="{{ $item->person1_name }}">
+
+                                        <div class="card-info">
+                                            <span class="card-name">{{ $item->person1_name }}</span>
+                                            <span class="card-designation">{{ $item->person1_position }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Back Side -->
-                                <div class="card-face card-back">
-                                    <img src="assets/images/ptr4.JPG" alt="CEO">
-                                    <div class="card-info">
-                                        <span class="card-name">Bindu C</span>
-                                        <span class="card-designation">Proprietor</span>
+
+                                    <!-- Back Side -->
+                                    <div class="card-face card-back">
+                                        <img src="{{ asset('storage/' . $item->person2_image) }}"
+                                            alt="{{ $item->person2_name }}">
+
+                                        <div class="card-info">
+                                            <span class="card-name">{{ $item->person2_name }}</span>
+                                            <span class="card-designation">{{ $item->person2_position }}</span>
+                                        </div>
                                     </div>
+
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                         <!-- <div class="experience-badge">
                             <span class="years">18+</span>
@@ -162,7 +171,7 @@
                             <li><i class="fas fa-check-circle"></i> Custom Fabrication</li>
                             <li><i class="fas fa-check-circle"></i> Expert Installation</li>
                         </ul>
-                        <a href="about.html" class="btn btn-primary">Read Our Story</a>
+                        <a href="{{ route('about') }}" class="btn btn-primary">Read Our Story</a>
                     </div>
                 </div>
             </div>
@@ -186,7 +195,8 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Granite</h3>
                                 <p class="product-desc">Premium quality Granite</p>
-                                <a href="products.html" class="btn-icon"><i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products') }}" class="btn-icon"><i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -198,7 +208,8 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Marble</h3>
                                 <p class="product-desc">Indian and Imported Marble</p>
-                                <a href="products.html" class="btn-icon"><i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products') }}" class="btn-icon"><i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -210,7 +221,8 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Tiles</h3>
                                 <p class="product-desc">Durable Kitchen Countertop</p>
-                                <a href="products.html" class="btn-icon"><i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products') }}" class="btn-icon"><i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -222,67 +234,64 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Natural Stone</h3>
                                 <p class="product-desc">Durable Kitchen Countertop</p>
-                                <a href="products.html" class="btn-icon"><i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products') }}" class="btn-icon"><i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center" style="margin-top: 50px;" data-aos="fade-up">
-                    <a href="products.html" class="btn btn-primary">View All Products</a>
+                    <a href="{{ route('products') }}" class="btn btn-primary">View All Products</a>
                 </div>
             </div>
         </section>
 
+        @php
+            $icons = [
+                'fas fa-scissors',
+                'fas fa-cubes',
+                'fas fa-search',
+                'fas fa-truck',
+                'fas fa-tools',
+                'fas fa-box-open',
+            ];
+        @endphp
+
         <!-- Services Section -->
         <section id="services" class="services">
             <div class="container">
+
                 <div class="section-header text-center" data-aos="fade-up">
                     <h4 class="section-subtitle">What We Do</h4>
                     <h2 class="section-title">Our Services</h2>
                 </div>
 
                 <div class="services-grid">
-                    <!-- Service 1 -->
-                    <div class="service-card" data-aos="fade-up">
-                        <div class="service-icon text-blue">
-                            <i class="fas fa-scissors"></i>
-                        </div>
-                        <h3 class="service-title">Custom Cutting and Finishing</h3>
-                        <p class="service-desc">Precision cutting and custom finishing to meet your exact specifications
-                            and design requirements.</p>
-                    </div>
+                    @foreach ($services as $index => $service)
+                        @php
+                            // Prevent icon repetition even if services increase
+                            $iconClass = $icons[$index % count($icons)];
+                        @endphp
 
-                    <!-- Service 2 -->
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-icon text-brown">
-                            <i class="fas fa-cubes"></i>
-                        </div>
-                        <h3 class="service-title">Bulk Supply for Projects</h3>
-                        <p class="service-desc">Reliable bulk supply solutions for large-scale residential, commercial,
-                            and architectural projects.</p>
-                    </div>
+                        <div class="service-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
 
-                    <!-- Service 3 -->
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-icon text-purple">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h3 class="service-title">Quality Testing and Packaging</h3>
-                        <p class="service-desc">Rigorous quality testing and secure packaging to ensure your granite
-                            arrives in perfect condition.</p>
-                    </div>
+                            <div class="service-icon">
+                                <i class="{{ $iconClass }}"></i>
+                            </div>
 
-                    <!-- Service 4 -->
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-icon text-orange">
-                            <i class="fas fa-truck"></i>
+                            <h3 class="service-title">
+                                {{ $service->title }}
+                            </h3>
+
+                            <p class="service-desc">
+                                {{ $service->description }}
+                            </p>
+
                         </div>
-                        <h3 class="service-title">Transportation & Installation Support</h3>
-                        <p class="service-desc">Professional transportation and expert installation support to complete
-                            your project seamlessly.</p>
-                    </div>
+                    @endforeach
                 </div>
+
             </div>
         </section>
 
@@ -346,28 +355,44 @@
                 </div>
 
                 <div class="offers-container">
-                    <!-- Current Offer -->
-                    <div class="offer-card current-offer" data-aos="flip-up">
-                        <div class="offer-badge">Hurry!</div>
-                        <h3 class="offer-title">Monsoon Sale</h3>
-                        <p class="offer-desc">Flat 20% OFF on all Indian Granites.</p>
-                        <div class="offer-discount">20% OFF</div>
-                        <p class="offer-date">Valid till: 30th Sept 2026</p>
-                    </div>
+                    @forelse ($offers as $offer)
+                        <div class="offer-card {{ $offer->type === 'current' ? 'current-offer' : 'upcoming-offer' }}"
+                            data-aos="flip-up" data-aos-delay="{{ $loop->index * 200 }}">
 
-                    <!-- Upcoming Offer -->
-                    <div class="offer-card upcoming-offer" data-aos="flip-up" data-aos-delay="200">
-                        <div class="offer-badge upcoming">Coming Soon</div>
-                        <h3 class="offer-title">Diwali Dhamaka</h3>
-                        <p class="offer-desc">Special prices on Italian Marble range.</p>
-                        <div class="offer-discount">upto 30% OFF</div>
-                        <p class="offer-date">Starts: 15th Oct 2026</p>
-                        <!-- <button class="btn btn-secondary small-btn notify-btn">Notify Me</button> -->
-                    </div>
+                            @if ($offer->badge)
+                                <div class="offer-badge {{ $offer->type === 'upcoming' ? 'upcoming' : '' }}">
+                                    {{ $offer->badge }}
+                                </div>
+                            @endif
+
+                            <h3 class="offer-title">{{ $offer->title }}</h3>
+
+                            <p class="offer-desc">
+                                {{ $offer->description }}
+                            </p>
+
+                            <div class="offer-discount">
+                                {{ $offer->discount_text }}
+                            </div>
+
+                            @if ($offer->type === 'current' && $offer->valid_till)
+                                <p class="offer-date">
+                                    Valid till: {{ \Carbon\Carbon::parse($offer->valid_till)->format('d M Y') }}
+                                </p>
+                            @elseif($offer->type === 'upcoming' && $offer->valid_till)
+                                <p class="offer-date">
+                                    Starts: {{ \Carbon\Carbon::parse($offer->valid_till)->format('d M Y') }}
+                                </p>
+                            @endif
+
+                        </div>
+                    @empty
+                        <p class="text-center">No offers available at the moment.</p>
+                    @endforelse
                 </div>
 
                 <div class="text-center" style="margin-top: 40px;">
-                    <a href="offers.html" class="btn btn-primary">View All Offers</a>
+                    <a href="{{ url('offers') }}" class="btn btn-primary">View All Offers</a>
                 </div>
             </div>
         </section>
@@ -377,49 +402,26 @@
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
                     <h2 class="section-title">What Our Clients Say</h2>
-                    <p class="section-subtitle">Lorem ipsum dolor sit amet.</p>
+                    <p class="section-subtitle">Our valuable customer feedback.</p>
                 </div>
+
                 <div class="testimonials-carousel">
                     <div class="testimonials-wrapper">
-                        <div class="testimonial-item" data-index="0">
-                            <img src="assets/images/cs1.jpg" alt="Emma Johnson">
-                        </div>
-                        <div class="testimonial-item" data-index="1">
-                            <img src="assets/images/cs2.jpg" alt="Michael Chen">
-                        </div>
-                        <div class="testimonial-item" data-index="2">
-                            <img src="assets/images/cs3.jpg" alt="Sarah Williams">
-                        </div>
-                        <div class="testimonial-item" data-index="3">
-                            <img src="assets/images/cs4.jpg" alt="David Brown">
-                        </div>
-                        <div class="testimonial-item" data-index="4">
-                            <img src="assets/images/cs5.jpg" alt="Lisa Anderson">
-                        </div>
-                        <div class="testimonial-item" data-index="5">
-                            <img src="assets/images/cs6.jpg" alt="James Wilson">
-                        </div>
-                        <div class="testimonial-item" data-index="6">
-                            <img src="https://i.pravatar.cc/150?img=9" alt="Maria Garcia">
-                        </div>
-                        <div class="testimonial-item" data-index="7">
-                            <img src="https://i.pravatar.cc/150?img=8" alt="Robert Taylor">
-                        </div>
-                        <div class="testimonial-item" data-index="8">
-                            <img src="https://i.pravatar.cc/150?img=10" alt="Jennifer Martinez">
-                        </div>
-                        <div class="testimonial-item" data-index="9">
-                            <img src="https://i.pravatar.cc/150?img=11" alt="Christopher Lee">
-                        </div>
+
+                        @foreach ($reviews as $index => $review)
+                            <div class="testimonial-item" data-index="{{ $index }}">
+                                <img src="{{ asset('storage/' . $review->img) }}" alt="{{ $review->name }}">
+                            </div>
+                        @endforeach
+
                     </div>
+
                     <div class="testimonial-content">
-                        <div class="testimonial-name" id="testimonialName">Emma Johnson</div>
-                        <div class="testimonial-title" id="testimonialTitle">Founder, Design Studio</div>
+                        <div class="testimonial-name" id="testimonialName"></div>
+                        <div class="testimonial-title" id="testimonialTitle"></div>
                         <div class="testimonial-quote" id="testimonialQuote">
                             <span class="quote-mark quote-start">"</span>
-                            <span class="quote-text">We had an excellent experience with Granite Udyog. Their granite
-                                and marble quality is outstanding, and the team ensured timely delivery and professional
-                                guidance throughout our project.</span>
+                            <span class="quote-text"></span>
                             <span class="quote-mark quote-end">"</span>
                         </div>
                     </div>
@@ -483,11 +485,13 @@
                             <div class="form-group">
                                 <label for="subject">Subject</label>
                                 <select id="subject" name="subject" class="@error('subject') is-invalid @enderror">
-                                    <option value="Inquiry" {{ old('subject') == 'Inquiry' ? 'selected' : '' }}>General
+                                    <option value="Inquiry" {{ old('subject') == 'Inquiry' ? 'selected' : '' }}>
+                                        General
                                         Inquiry</option>
                                     <option value="Quote" {{ old('subject') == 'Quote' ? 'selected' : '' }}>Request a
                                         Quote</option>
-                                    <option value="Support" {{ old('subject') == 'Support' ? 'selected' : '' }}>Support
+                                    <option value="Support" {{ old('subject') == 'Support' ? 'selected' : '' }}>
+                                        Support
                                     </option>
                                 </select>
 
@@ -498,8 +502,7 @@
 
                             <div class="form-group full-width">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="4"
-                                    class="@error('message') is-invalid @enderror"
+                                <textarea id="message" name="message" rows="4" class="@error('message') is-invalid @enderror"
                                     placeholder="How can we help you?">{{ old('message') }}</textarea>
 
                                 @error('message')
@@ -580,7 +583,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="products.html">Products</a></li>
+                        <li><a href="{{ route('products') }}">Products</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                     </ul>
@@ -630,6 +633,9 @@
     <script src="assets/js/ajax_libs.js"></script>
     <script src="assets/js/dist_aos.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+    const testimonialsData = @json($reviewsData);
+</script>
 </body>
 
 </html>

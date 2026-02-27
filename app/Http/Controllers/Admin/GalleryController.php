@@ -33,7 +33,7 @@ class GalleryController
         $request->validate([
         'title' => 'required|string|max:255',
         'category' => 'required|string|max:255',
-        'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:51200',
     ]);
      $imagePath = $request->file('img')->store('galleries', 'public');
     Gallery::create([

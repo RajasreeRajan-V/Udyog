@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ReviewController 
 {
@@ -28,22 +30,39 @@ class ReviewController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-         $request->validate([
+
+
+public function store(Request $request)
+{
+    $validated = $request->validate([
         'name'        => 'required|string|max:255',
         'designation' => 'required|string|max:255',
         'review'      => 'required|string',
-        'img'         => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'img'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
-        $imagePath = $request->file('img')->store('reviews', 'public');
-        Review::create([
-            'name' => $request->name,
-            'designation' => $request->designation,
-            'review' => $request->review,
-            'img' => $imagePath,
-        ]);
-        return redirect()->back()->with('success', 'Review added successfully!');
+
+    $imagePath = $request->hasFile('img')
+        ? $request->file('img')->store('reviews', 'public')
+        : $this->storeDefaultProfileImage();
+
+    Review::create([
+        'name'        => $validated['name'],
+        'designation' => $validated['designation'],
+        'review'      => $validated['review'],
+        'img'         => $imagePath,
+    ]);
+
+    return back()->with('success', 'Review added successfully!');
+}
+
+    protected function storeDefaultProfileImage(): string
+    {
+        $source = public_path('assets\images\deafult-profile.png');
+        $path   = 'reviews/' . Str::random(40) . '.png';
+
+        Storage::disk('public')->put($path, file_get_contents($source));
+
+        return $path;
     }
 
     /**

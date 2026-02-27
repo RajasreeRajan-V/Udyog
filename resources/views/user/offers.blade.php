@@ -47,60 +47,72 @@
 
     <div style="height: 100px;"></div>
 
-    <div class="container">
-        <div class="text-center" style="margin-top: 50px;">
-            <h1 class="section-title">Special Offers</h1>
-            <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">Grab the best deals on premium stones. Limited time offers!</p>
-        </div>
+<div class="container">
+    <div class="text-center" style="margin-top: 50px;">
+        <h1 class="section-title">Special Offers</h1>
+        <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">
+            Grab the best deals on premium stones. Limited time offers!
+        </p>
+    </div>
 
-        <!-- Current Offers -->
-        <div class="offers-page-section">
-            <h2 class="offers-title">Current Offers</h2>
-            <div class="offers-container">
-                 <!-- Current Offer 1 -->
+    <!-- ================= CURRENT OFFERS ================= -->
+    <div class="offers-page-section">
+        <h2 class="offers-title">Current Offers</h2>
+
+        <div class="offers-container">
+            @forelse ($offers->where('type', 'current') as $offer)
                 <div class="offer-card current-offer" data-aos="flip-up">
-                    <div class="offer-badge">Hurry!</div>
-                    <h3 class="offer-title">Monsoon Sale</h3>
-                    <p class="offer-desc">Flat 20% OFF on all Indian Granites.</p>
-                    <div class="offer-discount">20% OFF</div>
-                    <p class="offer-date">Valid till: 30th Sept 2026</p>
-                </div>
-                 <!-- Current Offer 2 -->
-                <div class="offer-card current-offer" data-aos="flip-up" data-aos-delay="100">
-                    <div class="offer-badge">Hurry!</div>
-                    <h3 class="offer-title">Kitchen Combo</h3>
-                    <p class="offer-desc">Buy Countertop + Backsplash Tiles</p>
-                    <div class="offer-discount">15% OFF</div>
-                    <p class="offer-date">Valid till: 15th Sept 2026</p>
-                </div>
-            </div>
-        </div>
+                    
+                    @if($offer->badge)
+                        <div class="offer-badge">{{ $offer->badge }}</div>
+                    @endif
 
-        <!-- Upcoming Offers -->
-        <div class="offers-page-section upcoming-offers-wrapper">
-            <h2 class="offers-title">Upcoming Offers</h2>
-             <div class="offers-container">
-                <!-- Upcoming Offer 1 -->
-                <div class="offer-card upcoming-offer" data-aos="flip-up">
-                    <div class="offer-badge upcoming">Coming Soon</div>
-                    <h3 class="offer-title">Diwali Dhamaka</h3>
-                    <p class="offer-desc">Unbeatable prices on Italian Marble.</p>
-                    <div class="offer-discount">upto 30% OFF</div>
-                    <p class="offer-date">Starts: 15th Oct 2026</p>
-                    <!-- <button class="btn btn-secondary small-btn notify-btn">Notify Me</button> -->
+                    <h3 class="offer-title">{{ $offer->title }}</h3>
+                    <p class="offer-desc">{{ $offer->description }}</p>
+
+                    <div class="offer-discount">{{ $offer->discount_text }}</div>
+
+                    @if($offer->valid_till)
+                        <p class="offer-date">
+                            Valid till: {{ \Carbon\Carbon::parse($offer->valid_till)->format('d M Y') }}
+                        </p>
+                    @endif
                 </div>
-                 <!-- Upcoming Offer 2 -->
-                <div class="offer-card upcoming-offer" data-aos="flip-up" data-aos-delay="100">
-                    <div class="offer-badge upcoming">Coming Soon</div>
-                    <h3 class="offer-title">New Year Bonanza</h3>
-                    <p class="offer-desc">Clearance sale on 2026 Stock.</p>
-                    <div class="offer-discount">Flat 40% OFF</div>
-                    <p class="offer-date">Starts: 1st Jan 2027</p>
-                    <!-- <button class="btn btn-secondary small-btn notify-btn">Notify Me</button>  -->
-                </div>
-            </div>
+            @empty
+                <p class="text-center">No current offers available.</p>
+            @endforelse
         </div>
     </div>
+
+    <!-- ================= UPCOMING OFFERS ================= -->
+    <div class="offers-page-section upcoming-offers-wrapper">
+        <h2 class="offers-title">Upcoming Offers</h2>
+
+        <div class="offers-container">
+            @forelse ($offers->where('type', 'upcoming') as $offer)
+                <div class="offer-card upcoming-offer" data-aos="flip-up">
+
+                    <div class="offer-badge upcoming">
+                        {{ $offer->badge ?? 'Coming Soon' }}
+                    </div>
+
+                    <h3 class="offer-title">{{ $offer->title }}</h3>
+                    <p class="offer-desc">{{ $offer->description }}</p>
+
+                    <div class="offer-discount">{{ $offer->discount_text }}</div>
+
+                    @if($offer->valid_till)
+                        <p class="offer-date">
+                            Starts: {{ \Carbon\Carbon::parse($offer->valid_till)->format('d M Y') }}
+                        </p>
+                    @endif
+                </div>
+            @empty
+                <p class="text-center">No upcoming offers announced.</p>
+            @endforelse
+        </div>
+    </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
