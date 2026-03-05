@@ -49,11 +49,11 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                <li><a href="{{ route('about') }}" class="nav-link active">About</a></li>
+                <li><a href="{{ route('about') }}" class="nav-link">About</a></li>
                 <li><a href="{{ route('products') }}" class="nav-link">Products</a></li>
                 <li><a href="{{ route('gallery') }}" class="nav-link">Gallery</a></li>
                 <li><a href="{{ route('home') }}#services" class="nav-link">Services</a></li>
-                <li><a href="{{ route('careers') }}" class="nav-link">Careers</a></li>
+                <li><a href="{{ route('careers') }}" class="nav-link active">Careers</a></li>
                 <li><a href="{{ route('offers') }}" class="nav-link">Offers</a></li>
                 <li><a href="{{ route('home') }}#contact" class="nav-link">Contact Us</a></li>
             </ul>
@@ -115,14 +115,12 @@
                             </li>
                         @endforeach
                     </ul>
-
-                    @foreach($careers as $career)
+                    
                         <button class="btn btn-primary small-btn btn-full-width open-apply-modal" data-id="{{ $career->id }}"
                             data-title="{{ $career->job_title }}">
                             Apply Now
                         </button>
-                    @endforeach
-
+                   
                 </div>
             @empty
                 <div class="text-center">
@@ -304,6 +302,26 @@
             setTimeout(() => alert.remove(), 500);
         }
     }, 4000);
+    document.querySelectorAll('.job-qualifications').forEach((list) => {
+            const items = Array.from(list.querySelectorAll('li'));
+            if (items.length <= 3) return;
+
+            // Mark extra items
+            items.slice(3).forEach((li) => li.classList.add('job-extra'));
+
+            // Create toggle control (text-style, not a button)
+            const toggleEl = document.createElement('span');
+            toggleEl.className = 'read-more-quals';
+            toggleEl.textContent = 'Read More';
+
+            toggleEl.addEventListener('click', () => {
+                const expanded = list.classList.toggle('expanded');
+                toggleEl.textContent = expanded ? 'Read Less' : 'Read More';
+            });
+
+            // Place control right after the list
+            list.parentNode.insertBefore(toggleEl, list.nextSibling);
+        });
 </script>
 </body>
 

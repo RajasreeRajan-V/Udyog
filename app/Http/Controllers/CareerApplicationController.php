@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CareerApplication;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class CareerApplicationController extends Controller
@@ -29,16 +29,38 @@ class CareerApplicationController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate([
-        'career_id'     => 'required|exists:careers,id',
-        'full_name'     => 'required|string|max:255',
-        'phone_number'  => 'required|string|max:20|unique:career_applications,phone_number',
-        'email_address' => 'required|email|max:255|unique:career_applications,email_address',
-        'resume'        => 'required|mimes:pdf,doc,docx|max:2048',
-    ], [
-        'phone_number.unique' => 'This phone number has already applied.',
-        'email_address.unique' => 'This email has already applied.',
-    ]);
+
+        $request->validate([
+            'career_id' => 'required|exists:careers,id',
+
+            'full_name' => 'required|string|max:255',
+
+            'phone_number' => [
+                'required',
+                'regex:/^[6-9]\d{9}$/',
+                Rule::unique('career_applications')
+                    ->where(function ($query) use ($request) {
+                        return $query->where('career_id', $request->career_id);
+                    }),
+            ],
+
+            'email_address' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('career_applications')
+                    ->where(function ($query) use ($request) {
+                        return $query->where('career_id', $request->career_id);
+                    }),
+            ],
+
+            'resume' => 'required|mimes:pdf,doc,docx|max:2048',
+
+        ], [
+            'phone_number.regex'  => 'Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.',
+            'phone_number.unique' => 'You have already applied for this job with this phone number.',
+            'email_address.unique' => 'You have already applied for this job with this email.',
+        ]);
     $resumePath = $request->file('resume')
                           ->store('resumes', 'public');
     CareerApplication::create([

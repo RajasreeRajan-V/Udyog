@@ -33,9 +33,9 @@
             </div>
             <ul class="nav-menu">
                <li><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                <li><a href="{{ route('about') }}" class="nav-link active">About</a></li>
+                <li><a href="{{ route('about') }}" class="nav-link">About</a></li>
                 <li><a href="{{ route('products') }}" class="nav-link">Products</a></li>
-                <li><a href="{{ route('gallery') }}" class="nav-link">Gallery</a></li>
+                <li><a href="{{ route('gallery') }}" class="nav-link active">Gallery</a></li>
                 <li><a href="{{ route('home') }}#services" class="nav-link">Services</a></li>
                 <li><a href="{{ route('careers') }}" class="nav-link">Careers</a></li>
                 <li><a href="{{ route('offers') }}" class="nav-link">Offers</a></li>

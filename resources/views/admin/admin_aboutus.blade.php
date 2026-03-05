@@ -6,7 +6,7 @@
     <div class="container mt-5">
 
         {{-- Header --}}
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        {{-- <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>About Us Management</h2>
             <button class="btn" data-bs-toggle="modal" data-bs-target="#createModal" style="background-color:#3A3A3A;
                    color:#A0D25D;
@@ -17,7 +17,7 @@
                    transition:0.3s;">
                 + Add About Us
             </button>
-        </div>
+        </div> --}}
 
         {{-- Success Message --}}
         @if(session('success'))
@@ -26,8 +26,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
-
+        
 {{-- About Us Table --}}
 <div class="card border-2" style="border-color: #A0D25D;">
     <div class="card-body">
@@ -97,8 +96,7 @@
         </table>
     </div>
 </div>
-
-    </div>
+</div>
 @if($aboutus)
 <div class="modal fade" id="editModal{{ $aboutus->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">

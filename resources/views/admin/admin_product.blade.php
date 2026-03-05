@@ -8,7 +8,8 @@
         {{-- Header --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Products Management</h2>
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#createProductModal" style="background-color:#3A3A3A;
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#createProductModal"
+                style="background-color:#3A3A3A;
                                color:#A0D25D;
                                border:2px solid #A0D25D;
                                font-weight:600;
@@ -19,7 +20,7 @@
         </div>
 
         {{-- Success Message --}}
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -65,7 +66,8 @@
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this product?')">
+                                        <button class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Delete this product?')">
                                             Delete
                                         </button>
                                     </form>
@@ -86,10 +88,11 @@
     </div>
 
     {{-- EDIT MODALS --}}
-    @foreach($products as $product)
+    @foreach ($products as $product)
         <div class="modal fade" id="editProductModal{{ $product->id }}" tabindex="-1">
             <div class="modal-dialog">
-                <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.products.update', $product->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -103,30 +106,52 @@
 
                             <div class="mb-3">
                                 <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
+                                <input type="text" name="name" class="form-control" value="{{ $product->name }}"
+                                    required>
                             </div>
 
                             <div class="mb-3">
                                 <label>Description</label>
-                                <textarea name="description" class="form-control"
-                                    required>{{ $product->description }}</textarea>
+                                <textarea name="description" class="form-control" required>{{ $product->description }}</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label>Size</label>
-                                <input type="text" name="size" class="form-control" value="{{ $product->size }}" required>
+                                <input type="text" name="size" class="form-control" value="{{ $product->size }}"
+                                    required>
                             </div>
 
                             <div class="mb-3">
                                 <label>Category</label>
-                                <input type="text" name="category" class="form-control" value="{{ $product->category }}"
-                                    required>
+                                <select name="category" class="form-control" required>
+                                    <option value="">-- Select Category --</option>
+                                    <option value="Granite" {{ $product->category == 'Granite' ? 'selected' : '' }}>Granite
+                                    </option>
+                                    <option value="Marble" {{ $product->category == 'Marble' ? 'selected' : '' }}>Marble
+                                    </option>
+                                    <option value="Tiles" {{ $product->category == 'Tiles' ? 'selected' : '' }}>Tiles
+                                    </option>
+                                    <option value="Natural Stones"
+                                        {{ $product->category == 'Natural Stones' ? 'selected' : '' }}>Natural Stones
+                                    </option>
+                                    <option value="Quartz" {{ $product->category == 'Quartz' ? 'selected' : '' }}>Quartz
+                                    </option>
+                                    <option value="Sandstone" {{ $product->category == 'Sandstone' ? 'selected' : '' }}>
+                                        Sandstone</option>
+                                    <option value="Limestone" {{ $product->category == 'Limestone' ? 'selected' : '' }}>
+                                        Limestone</option>
+                                    <option value="Slate" {{ $product->category == 'Slate' ? 'selected' : '' }}>Slate
+                                    </option>
+                                    <option value="Onyx" {{ $product->category == 'Onyx' ? 'selected' : '' }}>Onyx
+                                    </option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label>Image</label>
                                 <input type="file" name="img" class="form-control">
-                                <img src="{{ asset('storage/' . $product->img) }}" width="80" class="img-thumbnail mt-2">
+                                <img src="{{ asset('storage/' . $product->img) }}" width="80"
+                                    class="img-thumbnail mt-2">
                             </div>
 
                         </div>

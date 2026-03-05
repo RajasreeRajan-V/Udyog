@@ -17,8 +17,12 @@ return new class extends Migration
             ->constrained('careers')
             ->onDelete('cascade');
             $table->string('full_name');
-            $table->string('phone_number')->unique();
-            $table->string('email_address')->unique();
+            $table->string('phone_number');
+            $table->string('email_address');
+
+            $table->unique(['career_id', 'phone_number']);
+            $table->unique(['career_id', 'email_address']);
+            
             $table->string('resume');
             $table->timestamps();
         });

@@ -17,10 +17,10 @@ use App\Models\Review;
  
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $services = Service::all();
-        $about = AboutUs::latest()->get();
+        $about = AboutUs::latest()->first();
         $offers = Offer::all();
         $reviews = Review::all();
         $reviewsData = $reviews->map(function ($review) {
@@ -30,12 +30,19 @@ class UserController extends Controller
                 'quote' => $review->review,
             ];
         });
-        return view('user.index', compact('services','about','offers','reviews','reviewsData'));
+        $category = $request->category;
+
+        if ($category && $category !== 'all') {
+            $product = Product::where('category', $category)->get();
+        } else {
+            $product = Product::all();
+        }
+        return view('user.index', compact('services','about','offers','reviews','reviewsData','category'));
     }   
 
     public function about()
     {
-        $about = AboutUs::latest()->get();
+        $about = AboutUs::latest()->first();
         $team = Team::all();
         return view('user.about', compact('about','team'));
     }  

@@ -47,7 +47,7 @@
                 <span class="bar"></span>
             </div>
             <ul class="nav-menu">
-                <li><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ route('home') }}" class="nav-link active">Home</a></li>
                 <li><a href="{{ route('about') }}" class="nav-link">About</a></li>
                 <li><a href="{{ route('products') }}" class="nav-link">Products</a></li>
                 <li><a href="{{ route('gallery') }}" class="nav-link">Gallery</a></li>
@@ -119,33 +119,31 @@
                                 <div class="decor-text quality">PREMIUM<br>QUALITY</div> -->
                                 <!-- <img src="logo_main33.png" alt="Logo"> -->
                             </div>
-                            @foreach ($about as $item)
-                                <div class="image-frame">
+                            <div class="image-frame">
 
-                                    <!-- Front Side -->
-                                    <div class="card-face card-front">
-                                        <img src="{{ asset('storage/' . $item->person1_image) }}"
-                                            alt="{{ $item->person1_name }}">
+                                <!-- Front Side -->
+                                <div class="card-face card-front">
+                                    <img src="{{ asset('storage/' . $about->person1_image) }}"
+                                        alt="{{ $about->person1_name }}">
 
-                                        <div class="card-info">
-                                            <span class="card-name">{{ $item->person1_name }}</span>
-                                            <span class="card-designation">{{ $item->person1_position }}</span>
-                                        </div>
+                                    <div class="card-info">
+                                        <span class="card-name">{{ $about->person1_name }}</span>
+                                        <span class="card-designation">{{ $about->person1_position }}</span>
                                     </div>
-
-                                    <!-- Back Side -->
-                                    <div class="card-face card-back">
-                                        <img src="{{ asset('storage/' . $item->person2_image) }}"
-                                            alt="{{ $item->person2_name }}">
-
-                                        <div class="card-info">
-                                            <span class="card-name">{{ $item->person2_name }}</span>
-                                            <span class="card-designation">{{ $item->person2_position }}</span>
-                                        </div>
-                                    </div>
-
                                 </div>
-                            @endforeach
+
+                                <!-- Back Side -->
+                                <div class="card-face card-back">
+                                    <img src="{{ asset('storage/' . $about->person2_image) }}"
+                                        alt="{{ $about->person2_name }}">
+
+                                    <div class="card-info">
+                                        <span class="card-name">{{ $about->person2_name }}</span>
+                                        <span class="card-designation">{{ $about->person2_position }}</span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                         <!-- <div class="experience-badge">
                             <span class="years">18+</span>
@@ -195,8 +193,9 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Granite</h3>
                                 <p class="product-desc">Premium quality Granite</p>
-                                <a href="{{ route('products') }}" class="btn-icon"><i
-                                        class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products', ['category' => 'Granite']) }}" class="btn-icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -208,8 +207,9 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Marble</h3>
                                 <p class="product-desc">Indian and Imported Marble</p>
-                                <a href="{{ route('products') }}" class="btn-icon"><i
-                                        class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products', ['category' => 'Marble']) }}" class="btn-icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -221,8 +221,9 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Tiles</h3>
                                 <p class="product-desc">Durable Kitchen Countertop</p>
-                                <a href="{{ route('products') }}" class="btn-icon"><i
-                                        class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products', ['category' => 'Tiles']) }}" class="btn-icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -234,8 +235,9 @@
                             <div class="card-overlay">
                                 <h3 class="product-title">Natural Stone</h3>
                                 <p class="product-desc">Durable Kitchen Countertop</p>
-                                <a href="{{ route('products') }}" class="btn-icon"><i
-                                        class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('products', ['category' => 'Natural Stones']) }}" class="btn-icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -613,7 +615,8 @@
                     <h4 style="margin-top: 20px;">Follow Us</h4>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/19vdGUEGPD/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/graniteudyog?igsh=eWl0MHY2c3FvNmV5"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/graniteudyog?igsh=eWl0MHY2c3FvNmV5"><i
+                                class="fab fa-instagram"></i></a>
                         <a href="mailto:graniteudyog123@gmail.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://wa.me/9496431624"><i class="fab fa-whatsapp"></i></a>
                     </div>
@@ -634,8 +637,8 @@
     <script src="assets/js/dist_aos.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-    const testimonialsData = @json($reviewsData);
-</script>
+        const testimonialsData = @json($reviewsData);
+    </script>
 </body>
 
 </html>

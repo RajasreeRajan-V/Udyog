@@ -2528,3 +2528,40 @@ background: linear-gradient(to bottom, rgba(58, 58, 58, 0.4) 0%, rgba(58, 58, 58
     background-color: #A0D25D;
     color: #000;
 }
+.job-qualifications li.job-extra {
+    display: none;
+}
+
+.job-qualifications.expanded li.job-extra {
+    display: flex;
+}
+
+.read-more-quals {
+    margin-top: 10px;
+    display: inline-block;
+    font-weight: 700;
+    color: var(--primary-blue);
+    cursor: pointer;
+    position: relative;
+}
+
+.read-more-quals::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--vibrant-green), var(--primary-blue));
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+}
+
+.read-more-quals:hover::after {
+    transform: scaleX(1);
+}
+
+.read-more-quals:hover {
+    color: var(--accent-blue);
+}

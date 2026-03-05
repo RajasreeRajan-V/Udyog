@@ -29,20 +29,28 @@ class GalleryController
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
+{
+    $request->validate([
         'title' => 'required|string|max:255',
         'category' => 'required|string|max:255',
-        'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:51200',
+        'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:3072',
+    ], [
+        'img.required' => 'Please upload an image.',
+        'img.image' => 'The file must be a valid image.',
+        'img.mimes' => 'Only JPG, JPEG, PNG, and WEBP formats are allowed.',
+        'img.max' => 'The image size must not exceed 3MB.',
     ]);
-     $imagePath = $request->file('img')->store('galleries', 'public');
+
+    $imagePath = $request->file('img')->store('galleries', 'public');
+
     Gallery::create([
         'title' => $request->title,
         'category' => $request->category,
         'img' => $imagePath,
     ]);
+
     return redirect()->back()->with('success', 'Gallery item added successfully!');
-    }
+}
 
     /**
      * Display the specified resource.

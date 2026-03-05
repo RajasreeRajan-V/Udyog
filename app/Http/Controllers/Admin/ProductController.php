@@ -35,8 +35,13 @@ class ProductController
             'description' => 'required|string',
             'size' => 'required|string|max:100',
             'category' => 'required|string|max:100',
-            'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
+            'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:3072',
+    ], [
+        'img.required' => 'Please upload an image.',
+        'img.image' => 'The file must be a valid image.',
+        'img.mimes' => 'Only JPG, JPEG, PNG, and WEBP formats are allowed.',
+        'img.max' => 'The image size must not exceed 3MB.',
+    ]);
         $imagePath = $request->file('img')->store('products', 'public');
         Product::create([
             'name' => $request->name,
