@@ -19,15 +19,15 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <style>
         .is-invalid {
-    border: 1px solid #e74c3c !important;
-}
+            border: 1px solid #e74c3c !important;
+        }
 
-.error-text {
-    color: #e74c3c;
-    font-size: 13px;
-    margin-top: 5px;
-    display: block;
-}
+        .error-text {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+        }
     </style>
 </head>
 
@@ -62,12 +62,12 @@
     </header>
 
     <div style="height: 100px;"></div>
-    @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show">
-        {{ session('success') }}
-        <button type="button" class="btn-close" onclick="this.parentElement.style.display='none'"></button>
-    </div>
-@endif
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            {{ session('success') }}
+            <button type="button" class="btn-close" onclick="this.parentElement.style.display='none'"></button>
+        </div>
+    @endif
     <section class="container careers-content">
         <div class="text-center" style="margin-bottom: 50px;">
             <h1 class="section-title">Career Opportunities</h1>
@@ -77,56 +77,66 @@
         </div>
 
         <div class="careers-grid">
-            @forelse($careers as $career)
-                <div class="job-card" data-aos="fade-up">
+           @forelse($careers as $career)
+    <div class="job-card" data-aos="fade-up">
 
-                    <div class="job-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
+        <div class="job-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
 
-                    <!-- Job Title -->
-                    <h3 class="job-title">
-                        {{ $career->job_title }}
-                    </h3>
+        <!-- Job Title -->
+        <h3 class="job-title">
+            {{ $career->job_title }}
+        </h3>
 
-                    <!-- Salary -->
-                    <p class="salary-range">
-                        {{ $career->salary_range }}
-                    </p>
+        <!-- Salary -->
+        <p class="salary-range">
+            {{ $career->salary_range }}
+        </p>
 
-                    <!-- Description -->
-                    <div class="job-description">
-                        <strong>Description:</strong>
-                        {{ $career->description }}
-                    </div>
+        <!-- Card Body (grows to fill space) -->
+        <div class="job-body">
 
-                    <!-- Experience -->
-                    <ul class="job-qualifications">
-                        <li>
-                            <i class="fas fa-check"></i>
-                            {{ $career->experience }}
-                        </li>
+            <!-- Description -->
+            <div class="job-description">
+                <strong>Description:</strong>
+                {{ $career->description }}
+            </div>
 
-                        <!-- Skills (comma separated) -->
-                        @foreach(explode(',', $career->skills) as $skill)
-                            <li>
-                                <i class="fas fa-check"></i>
-                                {{ trim($skill) }}
-                            </li>
-                        @endforeach
-                    </ul>
-                    
-                        <button class="btn btn-primary small-btn btn-full-width open-apply-modal" data-id="{{ $career->id }}"
-                            data-title="{{ $career->job_title }}">
-                            Apply Now
-                        </button>
-                   
-                </div>
-            @empty
-                <div class="text-center">
-                    <p>No career opportunities available at the moment.</p>
-                </div>
-            @endforelse
+            <!-- Experience + Skills -->
+            <ul class="job-qualifications">
+                <li>
+                    <i class="fas fa-check"></i>
+                    {{ $career->experience }}
+                </li>
+
+                @foreach (explode(',', $career->skills) as $skill)
+                    <li>
+                        <i class="fas fa-check"></i>
+                        {{ trim($skill) }}
+                    </li>
+                @endforeach
+            </ul>
+
+            <!-- Read More toggle injected here by JS -->
+            <div class="read-more-wrapper"></div>
+
+        </div>
+
+        <!-- Button always at bottom -->
+        <div class="job-footer">
+            <button class="btn btn-primary small-btn btn-full-width open-apply-modal"
+                data-id="{{ $career->id }}" data-title="{{ $career->job_title }}">
+                Apply Now
+            </button>
+        </div>
+
+    </div>
+@empty
+    <div class="text-center">
+        <p>No career opportunities available at the moment.</p>
+    </div>
+@endforelse
         </div>
     </section>
 
@@ -136,16 +146,18 @@
             <span class="close-modal">&times;</span>
             <h2>Apply Now</h2>
 
-            <form action="{{ route('apply.store') }}" method="POST" enctype="multipart/form-data" class="contact-form">
+            <form action="{{ route('apply.store') }}" method="POST" enctype="multipart/form-data"
+                class="contact-form">
 
                 @csrf
 
                 <!-- Hidden Career ID -->
-                <input type="hidden" id="career_id" name="career_id">
+                <input type="hidden" id="career_id" name="career_id" value="{{ old('career_id') }}">
 
                 <!-- Job Title (Readonly Display) -->
                 <div class="form-group">
-                    <input type="text" id="job_title_display" placeholder="Job Title" readonly>
+                    <input type="text" id="job_title_display" placeholder="Job Title" readonly
+                        value="{{ old('job_title_display') }}">
                 </div>
 
                 <div class="form-group">
@@ -158,8 +170,8 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="tel" name="phone_number" placeholder="Phone Number" value="{{ old('phone_number') }}"
-                        class="@error('phone_number') is-invalid @enderror">
+                    <input type="tel" name="phone_number" placeholder="Phone Number"
+                        value="{{ old('phone_number') }}" class="@error('phone_number') is-invalid @enderror">
 
                     @error('phone_number')
                         <small class="error-text">{{ $message }}</small>
@@ -238,7 +250,8 @@
                     <h4 style="margin-top: 20px;">Follow Us</h4>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/19vdGUEGPD/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/graniteudyog?igsh=eWl0MHY2c3FvNmV5"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/graniteudyog?igsh=eWl0MHY2c3FvNmV5"><i
+                                class="fab fa-instagram"></i></a>
                         <a href="mailto:graniteudyog123@gmail.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://wa.me/9496431624"><i class="fab fa-whatsapp"></i></a>
                     </div>
@@ -256,73 +269,95 @@
     <script src="assets/js/dist_aos.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        const modal = document.getElementById('applicationModal');
-        const closeBtn = document.querySelector('.close-modal');
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById('applicationModal');
+            const closeBtn = document.querySelector('.close-modal');
 
-        document.querySelectorAll('.open-apply-modal').forEach(button => {
-            button.addEventListener('click', function () {
+            // Open modal and populate fields
+            document.querySelectorAll('.open-apply-modal').forEach(button => {
+                button.addEventListener('click', function() {
+                    let careerId = this.dataset.id;
+                    let jobTitle = this.dataset.title;
 
-                let careerId = this.dataset.id;
-                let jobTitle = this.dataset.title;
+                    // Manually clear only the user-fillable fields (NOT job_title_display)
+                    const form = document.querySelector('#applicationModal .contact-form');
+                    form.querySelector('[name="full_name"]').value = '';
+                    form.querySelector('[name="phone_number"]').value = '';
+                    form.querySelector('[name="email_address"]').value = '';
+                    form.querySelector('[name="resume"]').value = '';
 
-                document.getElementById('career_id').value = careerId;
-                document.getElementById('job_title_display').value = jobTitle;
+                    // Now safely set the job fields
+                    document.getElementById('career_id').value = careerId;
+                    document.getElementById('job_title_display').value = jobTitle;
 
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Auto-open modal if validation errors exist
+            @if ($errors->any())
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
-            });
-        });
+            @endif
 
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+            // Auto-hide alert after 4 seconds
+            setTimeout(function() {
+                const alert = document.querySelector('.alert');
+                if (alert) {
+                    alert.style.transition = "opacity 0.5s ease";
+                    alert.style.opacity = "0";
+                    setTimeout(() => alert.remove(), 500);
+                }
+            }, 4000);
+
+            // Read More / Read Less for job qualifications
+           document.querySelectorAll('.job-qualifications').forEach((list) => {
+    const items = Array.from(list.querySelectorAll('li'));
+    if (items.length <= 3) return;
+
+    items.slice(3).forEach((li) => li.classList.add('job-extra'));
+
+    const toggleEl = document.createElement('span');
+    toggleEl.className = 'read-more-quals';
+    toggleEl.textContent = 'Read More';
+
+    toggleEl.addEventListener('click', () => {
+        const expanded = list.classList.toggle('expanded');
+        toggleEl.textContent = expanded ? 'Read Less' : 'Read More';
+    });
+
+    // Inject into the dedicated wrapper div, not after the <ul>
+    const wrapper = list.closest('.job-body').querySelector('.read-more-wrapper');
+    if (wrapper) wrapper.appendChild(toggleEl);
+});
+        });
+        // Auto-open modal if validation errors exist
+@if ($errors->any())
+    const oldCareerId = "{{ old('career_id') }}";
+    if (oldCareerId) {
+        const matchingBtn = document.querySelector(`.open-apply-modal[data-id="${oldCareerId}"]`);
+        if (matchingBtn) {
+            document.getElementById('job_title_display').value = matchingBtn.dataset.title;
         }
-
-        closeBtn.addEventListener('click', closeModal);
-
-        window.addEventListener('click', function (e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+@endif
     </script>
-    <script>
-        @if ($errors->any())
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById('applicationModal').classList.add('active');
-            });
-        @endif
-    </script>
-    <script>
-    setTimeout(function() {
-        const alert = document.querySelector('.alert');
-        if(alert){
-            alert.style.transition = "opacity 0.5s ease";
-            alert.style.opacity = "0";
-            setTimeout(() => alert.remove(), 500);
-        }
-    }, 4000);
-    document.querySelectorAll('.job-qualifications').forEach((list) => {
-            const items = Array.from(list.querySelectorAll('li'));
-            if (items.length <= 3) return;
-
-            // Mark extra items
-            items.slice(3).forEach((li) => li.classList.add('job-extra'));
-
-            // Create toggle control (text-style, not a button)
-            const toggleEl = document.createElement('span');
-            toggleEl.className = 'read-more-quals';
-            toggleEl.textContent = 'Read More';
-
-            toggleEl.addEventListener('click', () => {
-                const expanded = list.classList.toggle('expanded');
-                toggleEl.textContent = expanded ? 'Read Less' : 'Read More';
-            });
-
-            // Place control right after the list
-            list.parentNode.insertBefore(toggleEl, list.nextSibling);
-        });
-</script>
 </body>
 
 </html>
