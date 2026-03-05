@@ -356,8 +356,15 @@
                     <h2 class="section-title">Exclusive Offers</h2>
                 </div>
 
+                @php
+                    $today = \Carbon\Carbon::today();
+                    $activeOffers = $offers->filter(function ($offer) use ($today) {
+                        return !$offer->valid_till || \Carbon\Carbon::parse($offer->valid_till)->gte($today);
+                    });
+                @endphp
+
                 <div class="offers-container">
-                    @forelse ($offers as $offer)
+                    @forelse ($activeOffers as $offer)
                         <div class="offer-card {{ $offer->type === 'current' ? 'current-offer' : 'upcoming-offer' }}"
                             data-aos="flip-up" data-aos-delay="{{ $loop->index * 200 }}">
 
@@ -369,19 +376,15 @@
 
                             <h3 class="offer-title">{{ $offer->title }}</h3>
 
-                            <p class="offer-desc">
-                                {{ $offer->description }}
-                            </p>
+                            <p class="offer-desc">{{ $offer->description }}</p>
 
-                            <div class="offer-discount">
-                                {{ $offer->discount_text }}
-                            </div>
+                            <div class="offer-discount">{{ $offer->discount_text }}</div>
 
                             @if ($offer->type === 'current' && $offer->valid_till)
                                 <p class="offer-date">
                                     Valid till: {{ \Carbon\Carbon::parse($offer->valid_till)->format('d M Y') }}
                                 </p>
-                            @elseif($offer->type === 'upcoming' && $offer->valid_till)
+                            @elseif ($offer->type === 'upcoming' && $offer->valid_till)
                                 <p class="offer-date">
                                     Starts: {{ \Carbon\Carbon::parse($offer->valid_till)->format('d M Y') }}
                                 </p>
