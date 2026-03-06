@@ -551,10 +551,11 @@
                         </div>
 
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.facebook.com/share/19vdGUEGPD/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/graniteudyog?igsh=eWl0MHY2c3FvNmV5"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="mailto:graniteudyog123@gmail.com"><i class="fas fa-envelope"></i></a>
+                            <a href="https://wa.me/9496431624"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
