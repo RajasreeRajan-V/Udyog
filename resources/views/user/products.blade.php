@@ -49,9 +49,7 @@
         <div class="scroll-progress-bar"></div>
     </header>
 
-    <div style="height: 100px;"></div>
-
-    <section class="container">
+    <section class="product-container container main-content-top">
         <div class="text-center" style="margin-top: 50px;">
             <h1 class="section-title">Our Products</h1>
             <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">
@@ -89,7 +87,7 @@
             @endforeach
         </div>
     </section>
-    <br>
+   
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

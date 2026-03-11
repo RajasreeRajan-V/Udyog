@@ -35,7 +35,7 @@ class ProductController
             'description' => 'required|string',
             'size' => 'required|string|max:100',
             'category' => 'required|string|max:100',
-            'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:3072',
+            'img' => 'required|image|mimes:jpg,jpeg,png,webp|max:71680',
     ], [
         'img.required' => 'Please upload an image.',
         'img.image' => 'The file must be a valid image.',

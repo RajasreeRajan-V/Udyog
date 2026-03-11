@@ -45,9 +45,10 @@
         <div class="scroll-progress-bar"></div>
     </header>
 
-    <div style="height: 100px;"></div>
+    {{-- <div style="height: 100px;"></div> --}}
 
-<section class="container">
+<section class="gallery-container container main-content-top">
+
     <div class="text-center" style="margin-top: 50px;">
         <h1 class="section-title">Our Gallery</h1>
         <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">
@@ -86,7 +87,7 @@
         <img src="" alt="Gallery Image" class="lightbox-img">
         <div class="lightbox-caption"></div>
     </div>
-<br>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

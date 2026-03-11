@@ -61,14 +61,14 @@
         <div class="scroll-progress-bar"></div>
     </header>
 
-    <div style="height: 100px;"></div>
+
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show">
             {{ session('success') }}
             <button type="button" class="btn-close" onclick="this.parentElement.style.display='none'"></button>
         </div>
     @endif
-    <section class="container careers-content">
+    <section class="container careers-container main-content-top">
         <div class="text-center" style="margin-bottom: 50px;">
             <h1 class="section-title">Career Opportunities</h1>
             <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">

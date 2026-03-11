@@ -152,17 +152,13 @@
                     </div>
 
                     <div class="about-text" data-aos="fade-left">
-                        <h4 class="section-subtitle">Our Story</h4>
-                        <h2 class="section-title">Crafting Legacy in Stone</h2>
-                        <p class="description">
-                            Welcome to Udyod Granite, where nature's finest creations meet human craftsmanship. Founded
-                            in 2005, we have established ourselves as a premier provider of high-quality granite and
-                            marble solutions.
+                        <h4 class="section-subtitle section-subtitle-about">Our Story</h4>
+                        <h2 class="section-title section-title-about">Crafting Legacy in Stone</h2>
+                       <p class="description description-about">
+                            Granite Udyog is a trusted granite manufacturing company established in 2008 in Kasaragod, Kerala. We specialize in processing premium-quality granite blocks sourced from quarries across India, transforming them into finely finished stone products. With a strong focus on precision and craftsmanship, we ensure that every product meets the specific size, pattern, and design requirements of our customers.
                         </p>
-                        <p class="description">
-                            Our journey began with a simple vision: to transform ordinary spaces into extraordinary
-                            masterpieces. With a keen eye for quality and an unwavering commitment to customer
-                            satisfaction, we source the finest stones from around the globe.
+                        <p class="description description-about">
+                            From extraction and cutting to polishing, finishing, and quality inspection, every stage of our production process follows recognized international standards. Our range includes granite slabs, tiles, and customized stone solutions used for countertops, flooring, wall cladding, and architectural applications, delivering durability, elegance, and lasting value.
                         </p>
                         <ul class="about-features">
                             <li><i class="fas fa-check-circle"></i> Premium Quality Stone</li>

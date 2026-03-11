@@ -49,9 +49,9 @@
         <div class="scroll-progress-bar"></div>
     </header>
 
-    <div style="height: 100px;"></div>
+   
 
-    <div class="container">
+    <div class="offers-container container main-content-top">
         <div class="text-center" style="margin-top: 50px;">
             <h1 class="section-title">Special Offers</h1>
             <p style="max-width: 600px; margin: 0 auto; color: var(--secondary-dark);">
@@ -63,7 +63,7 @@
         <div class="offers-page-section">
             <h2 class="offers-title">Current Offers</h2>
 
-            <div class="offers-container">
+            <div class="offers-cards-row">
 
                 @php
                     $today = \Carbon\Carbon::today();
@@ -103,7 +103,7 @@
         <div class="offers-page-section upcoming-offers-wrapper">
             <h2 class="offers-title">Upcoming Offers</h2>
 
-            <div class="offers-container">
+            <div class="offers-cards-row">
                 @forelse ($offers->where('type', 'upcoming') as $offer)
                     <div class="offer-card upcoming-offer" data-aos="flip-up">
 

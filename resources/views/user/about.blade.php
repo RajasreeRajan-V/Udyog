@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        .about-text p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+    </style>
 </head>
 
 <body>
@@ -89,7 +95,9 @@
                 <h2 class="story-title">{{ $about->heading }}</h2>
                 <h4 class="story-subtitle">{{ $about->title }}</h4>
 
-                <p>{{ $about->description }}</p>
+                <div class="about-text">
+                    {!! '<p>' . str_replace("\n", '</p><p>', e($about->description)) . '</p>' !!}
+                </div>
 
                 <div class="story-signature">
                     <p>{{ $about->tagline }}</p>
@@ -102,13 +110,9 @@
 
 
     <!-- Key Members -->
-    <!-- Team Section -->
-    <section style="background-color: var(--bg-light);">
+    <section class="key-members-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">
-                Our Team
-            </h2>
-
+            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Our Team</h2>
             <div class="team-grid">
                 @foreach ($team as $member)
                     <div class="team-member" data-aos="zoom-in">
