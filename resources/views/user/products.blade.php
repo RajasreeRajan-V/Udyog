@@ -87,7 +87,7 @@
             @endforeach
         </div>
     </section>
-   
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

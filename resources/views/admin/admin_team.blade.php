@@ -8,7 +8,8 @@
         {{-- Header --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>About Us Management</h2>
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#createTeamModal" style="background-color:#3A3A3A;
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#createTeamModal"
+                style="background-color:#3A3A3A;
                        color:#A0D25D;
                        border:2px solid #A0D25D;
                        font-weight:600;
@@ -20,7 +21,7 @@
         </div>
 
         {{-- Success Message --}}
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -29,8 +30,8 @@
 
         {{-- Team Members Section --}}
         <div class="card border-2" style="border-color: #A0D25D;">
-    <div class="card-body">
-        <table class="table table-bordered table-striped align-middle">
+            <div class="card-body">
+                <table class="table table-bordered table-striped align-middle">
                     <thead class="table-dark">
                         <tr>
                             <th>#</th>
@@ -58,10 +59,12 @@
                                         Edit
                                     </button>
 
-                                    <form action="{{ route('admin.teams.destroy', $team->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.teams.destroy', $team->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this member?')">
+                                        <button class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Delete this member?')">
                                             Delete
                                         </button>
                                     </form>
@@ -80,7 +83,7 @@
         </div>
 
     </div>
-    @foreach($teams as $team)
+    @foreach ($teams as $team)
         <div class="modal fade" id="editTeamModal{{ $team->id }}" tabindex="-1">
             <div class="modal-dialog">
                 <form action="{{ route('admin.teams.update', $team->id) }}" method="POST" enctype="multipart/form-data">
@@ -97,18 +100,21 @@
 
                             <div class="mb-3">
                                 <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="{{ $team->name }}" required>
+                                <input type="text" name="name" class="form-control" value="{{ $team->name }}"
+                                    required>
                             </div>
 
                             <div class="mb-3">
                                 <label>Position</label>
-                                <input type="text" name="position" class="form-control" value="{{ $team->position }}" required>
+                                <input type="text" name="position" class="form-control" value="{{ $team->position }}"
+                                    required>
                             </div>
 
                             <div class="mb-3">
                                 <label>Image</label>
                                 <input type="file" name="image" class="form-control">
-                                <img src="{{ asset('storage/' . $team->image) }}" width="80" class="img-thumbnail mt-2">
+                                <img src="{{ asset('storage/' . $team->image) }}" width="80"
+                                    class="img-thumbnail mt-2">
                             </div>
 
                         </div>
@@ -126,7 +132,7 @@
             </div>
         </div>
     @endforeach
-    
+
     {{-- Create Modal --}}
     <div class="modal fade" id="createTeamModal" tabindex="-1">
         <div class="modal-dialog">

@@ -154,11 +154,19 @@
                     <div class="about-text" data-aos="fade-left">
                         <h4 class="section-subtitle section-subtitle-about">Our Story</h4>
                         <h2 class="section-title section-title-about">Crafting Legacy in Stone</h2>
-                       <p class="description description-about">
-                            Granite Udyog is a trusted granite manufacturing company established in 2008 in Kasaragod, Kerala. We specialize in processing premium-quality granite blocks sourced from quarries across India, transforming them into finely finished stone products. With a strong focus on precision and craftsmanship, we ensure that every product meets the specific size, pattern, and design requirements of our customers.
+                        <p class="description description-about">
+                            Granite Udyog is a trusted granite manufacturing company established in 2008 in Kasaragod,
+                            Kerala. We specialize in processing premium-quality granite blocks sourced from quarries
+                            across India, transforming them into finely finished stone products. With a strong focus on
+                            precision and craftsmanship, we ensure that every product meets the specific size, pattern,
+                            and design requirements of our customers.
                         </p>
                         <p class="description description-about">
-                            From extraction and cutting to polishing, finishing, and quality inspection, every stage of our production process follows recognized international standards. Our range includes granite slabs, tiles, and customized stone solutions used for countertops, flooring, wall cladding, and architectural applications, delivering durability, elegance, and lasting value.
+                            From extraction and cutting to polishing, finishing, and quality inspection, every stage of
+                            our production process follows recognized international standards. Our range includes
+                            granite slabs, tiles, and customized stone solutions used for countertops, flooring, wall
+                            cladding, and architectural applications, delivering durability, elegance, and lasting
+                            value.
                         </p>
                         <ul class="about-features">
                             <li><i class="fas fa-check-circle"></i> Premium Quality Stone</li>

@@ -186,22 +186,35 @@
 
                         <div class="mb-3">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" required>
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                value="{{ old('name') }}">
+
+                            @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label>Description</label>
-                            <textarea name="description" class="form-control" required></textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+
+                            @error('description')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label>Size</label>
-                            <input type="text" name="size" class="form-control" required>
-                        </div>
+                            <input type="text" name="size" class="form-control @error('size') is-invalid @enderror"
+                                value="{{ old('size') }}">
 
+                            @error('size')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <label>Category</label>
-                            <select name="category" class="form-control" required>
+                            <select name="category" class="form-control @error('category') is-invalid @enderror">
                                 <option value="">-- Select Category --</option>
                                 <option value="Granite">Granite</option>
                                 <option value="Marble">Marble</option>
@@ -213,11 +226,19 @@
                                 <option value="Slate">Slate</option>
                                 <option value="Onyx">Onyx</option>
                             </select>
+
+                            @error('category')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label>Image</label>
-                            <input type="file" name="img" class="form-control" required>
+                            <input type="file" name="img" class="form-control @error('img') is-invalid @enderror">
+
+                            @error('img')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                     </div>
@@ -234,5 +255,10 @@
             </form>
         </div>
     </div>
-
+    @if ($errors->any())
+        <script>
+            var myModal = new bootstrap.Modal(document.getElementById('createProductModal'));
+            myModal.show();
+        </script>
+    @endif
 @endsection

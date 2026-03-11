@@ -77,66 +77,66 @@
         </div>
 
         <div class="careers-grid">
-           @forelse($careers as $career)
-    <div class="job-card" data-aos="fade-up">
+            @forelse($careers as $career)
+                <div class="job-card" data-aos="fade-up">
 
-        <div class="job-icon">
-            <i class="fas fa-briefcase"></i>
-        </div>
+                    <div class="job-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
 
-        <!-- Job Title -->
-        <h3 class="job-title">
-            {{ $career->job_title }}
-        </h3>
+                    <!-- Job Title -->
+                    <h3 class="job-title">
+                        {{ $career->job_title }}
+                    </h3>
 
-        <!-- Salary -->
-        <p class="salary-range">
-            {{ $career->salary_range }}
-        </p>
+                    <!-- Salary -->
+                    <p class="salary-range">
+                        {{ $career->salary_range }}
+                    </p>
 
-        <!-- Card Body (grows to fill space) -->
-        <div class="job-body">
+                    <!-- Card Body (grows to fill space) -->
+                    <div class="job-body">
 
-            <!-- Description -->
-            <div class="job-description">
-                <strong>Description:</strong>
-                {{ $career->description }}
-            </div>
+                        <!-- Description -->
+                        <div class="job-description">
+                            <strong>Description:</strong>
+                            {{ $career->description }}
+                        </div>
 
-            <!-- Experience + Skills -->
-            <ul class="job-qualifications">
-                <li>
-                    <i class="fas fa-check"></i>
-                    {{ $career->experience }}
-                </li>
+                        <!-- Experience + Skills -->
+                        <ul class="job-qualifications">
+                            <li>
+                                <i class="fas fa-check"></i>
+                                {{ $career->experience }}
+                            </li>
 
-                @foreach (explode(',', $career->skills) as $skill)
-                    <li>
-                        <i class="fas fa-check"></i>
-                        {{ trim($skill) }}
-                    </li>
-                @endforeach
-            </ul>
+                            @foreach (explode(',', $career->skills) as $skill)
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    {{ trim($skill) }}
+                                </li>
+                            @endforeach
+                        </ul>
 
-            <!-- Read More toggle injected here by JS -->
-            <div class="read-more-wrapper"></div>
+                        <!-- Read More toggle injected here by JS -->
+                        <div class="read-more-wrapper"></div>
 
-        </div>
+                    </div>
 
-        <!-- Button always at bottom -->
-        <div class="job-footer">
-            <button class="btn btn-primary small-btn btn-full-width open-apply-modal"
-                data-id="{{ $career->id }}" data-title="{{ $career->job_title }}">
-                Apply Now
-            </button>
-        </div>
+                    <!-- Button always at bottom -->
+                    <div class="job-footer">
+                        <button class="btn btn-primary small-btn btn-full-width open-apply-modal"
+                            data-id="{{ $career->id }}" data-title="{{ $career->job_title }}">
+                            Apply Now
+                        </button>
+                    </div>
 
-    </div>
-@empty
-    <div class="text-center">
-        <p>No career opportunities available at the moment.</p>
-    </div>
-@endforelse
+                </div>
+            @empty
+                <div class="text-center">
+                    <p>No career opportunities available at the moment.</p>
+                </div>
+            @endforelse
         </div>
     </section>
 
@@ -325,38 +325,38 @@
             }, 4000);
 
             // Read More / Read Less for job qualifications
-           document.querySelectorAll('.job-qualifications').forEach((list) => {
-    const items = Array.from(list.querySelectorAll('li'));
-    if (items.length <= 3) return;
+            document.querySelectorAll('.job-qualifications').forEach((list) => {
+                const items = Array.from(list.querySelectorAll('li'));
+                if (items.length <= 3) return;
 
-    items.slice(3).forEach((li) => li.classList.add('job-extra'));
+                items.slice(3).forEach((li) => li.classList.add('job-extra'));
 
-    const toggleEl = document.createElement('span');
-    toggleEl.className = 'read-more-quals';
-    toggleEl.textContent = 'Read More';
+                const toggleEl = document.createElement('span');
+                toggleEl.className = 'read-more-quals';
+                toggleEl.textContent = 'Read More';
 
-    toggleEl.addEventListener('click', () => {
-        const expanded = list.classList.toggle('expanded');
-        toggleEl.textContent = expanded ? 'Read Less' : 'Read More';
-    });
+                toggleEl.addEventListener('click', () => {
+                    const expanded = list.classList.toggle('expanded');
+                    toggleEl.textContent = expanded ? 'Read Less' : 'Read More';
+                });
 
-    // Inject into the dedicated wrapper div, not after the <ul>
-    const wrapper = list.closest('.job-body').querySelector('.read-more-wrapper');
-    if (wrapper) wrapper.appendChild(toggleEl);
-});
+                // Inject into the dedicated wrapper div, not after the <ul>
+                const wrapper = list.closest('.job-body').querySelector('.read-more-wrapper');
+                if (wrapper) wrapper.appendChild(toggleEl);
+            });
         });
         // Auto-open modal if validation errors exist
-@if ($errors->any())
-    const oldCareerId = "{{ old('career_id') }}";
-    if (oldCareerId) {
-        const matchingBtn = document.querySelector(`.open-apply-modal[data-id="${oldCareerId}"]`);
-        if (matchingBtn) {
-            document.getElementById('job_title_display').value = matchingBtn.dataset.title;
-        }
-    }
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-@endif
+        @if ($errors->any())
+            const oldCareerId = "{{ old('career_id') }}";
+            if (oldCareerId) {
+                const matchingBtn = document.querySelector(`.open-apply-modal[data-id="${oldCareerId}"]`);
+                if (matchingBtn) {
+                    document.getElementById('job_title_display').value = matchingBtn.dataset.title;
+                }
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        @endif
     </script>
 </body>
 

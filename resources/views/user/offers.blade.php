@@ -49,7 +49,7 @@
         <div class="scroll-progress-bar"></div>
     </header>
 
-   
+
 
     <div class="offers-container container main-content-top">
         <div class="text-center" style="margin-top: 50px;">

@@ -193,7 +193,7 @@
                                 placeholder="20% OFF / Flat 40% OFF" required>
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label>Type</label>
                             <select name="type" id="offerType" class="form-control" required>
                                 <option value="current">Current</option>
@@ -244,14 +244,14 @@
             // Run once on load
             updateLabel();
         });
-        document.addEventListener('DOMContentLoaded', function () {
-        const dateInput = document.getElementById('validTill');
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('validTill');
 
-        // Get today's date in YYYY-MM-DD format
-        const today = new Date().toISOString().split('T')[0];
+            // Get today's date in YYYY-MM-DD format
+            const today = new Date().toISOString().split('T')[0];
 
-        // Set minimum selectable date as today
-        dateInput.setAttribute('min', today);
-    });
+            // Set minimum selectable date as today
+            dateInput.setAttribute('min', today);
+        });
     </script>
 @endsection
