@@ -543,7 +543,7 @@
                         <div class="info-card">
                             <div class="info-icon"><i class="fas fa-envelope"></i></div>
                             <h4 class="info-title">Email Us</h4>
-                            <p class="info-text"><a href="mailto:info@udyodgranite.com">info@udyodgranite.com</a></p>
+                            <p class="info-text"><a href="mailto:graniteudyog123@gmail.com">graniteudyog123@gmail.com</a></p>
                         </div>
 
                         <div class="working-hours">
@@ -617,7 +617,7 @@
                             seethangoli 671321</li>
                         <li><i class="fas fa-phone-alt"></i> <a href="tel:04994240331">04994 240331</a></li>
                         <li><i class="fas fa-envelope"></i> <a
-                                href="mailto:info@udyodgranite.com">info@udyodgranite.com</a></li>
+                                href="mailto:graniteudyog123@gmail.com">graniteudyog123@gmail.com</a></li>
                     </ul>
 
                     <h4 style="margin-top: 20px;">Follow Us</h4>

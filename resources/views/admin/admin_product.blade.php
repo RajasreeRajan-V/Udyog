@@ -26,7 +26,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
+            {{-- Filter --}}
+<form method="GET" action="{{ route('admin.products.index') }}" class="mb-3">
+    <div class="row g-2 align-items-center">
 
+        <div class="col-auto">
+            <select name="category" class="form-control">
+                <option value="">All Categories</option>
+                <option value="Granite" {{ request('category') == 'Granite' ? 'selected' : '' }}>Granite</option>
+                <option value="Tiles" {{ request('category') == 'Tiles' ? 'selected' : '' }}>Tiles</option>
+                <option value="Natural Stones" {{ request('category') == 'Natural Stones' ? 'selected' : '' }}>Natural Stones</option>
+                <option value="Marble" {{ request('category') == 'Marble' ? 'selected' : '' }}>Marble</option>
+            </select>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">
+                Filter
+            </button>
+        </div>
+
+        <div class="col-auto">
+            <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
+                Reset
+            </a>
+        </div>
+
+    </div>
+</form>
         {{-- Products Table --}}
         <div class="card border-2" style="border-color: #A0D25D;">
             <div class="card-body">
@@ -45,7 +72,7 @@
                     <tbody>
                         @forelse($products as $product)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->iteration }}</td>
 
                                 <td>
                                     <img src="{{ asset('storage/' . $product->img) }}" width="60" class="img-thumbnail">
@@ -82,6 +109,12 @@
                         @endforelse
                     </tbody>
                 </table>
+                 {{-- Pagination --}}
+        <div class="d-flex justify-content-center">
+    {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
+</div>
+
+
             </div>
         </div>
 

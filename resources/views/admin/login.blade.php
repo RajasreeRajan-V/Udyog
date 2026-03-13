@@ -666,7 +666,20 @@
         <div class="divider">
             <div class="divider-icon"></div>
         </div>
-
+        @if ($errors->any())
+            <div
+                style="
+        background:#ff4d4d20;
+        border:1px solid #ff4d4d;
+        color:#ff8080;
+        padding:10px;
+        border-radius:8px;
+        margin-bottom:20px;
+        font-size:13px;
+    ">
+                {{ $errors->first() }}
+            </div>
+        @endif
         <form method="POST" action="{{ route('admin.do.login') }}">
             @csrf
             <div class="input-group">

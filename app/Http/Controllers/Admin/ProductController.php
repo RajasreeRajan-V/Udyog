@@ -11,9 +11,14 @@ class ProductController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $query = Product::query();
+
+    if ($request->category) {
+        $query->where('category', $request->category);
+    }
+        $products = $query->paginate(10);
         return view('admin.admin_product', compact('products'));
     }
 
